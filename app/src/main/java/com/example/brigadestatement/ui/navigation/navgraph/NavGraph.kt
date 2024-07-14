@@ -1,6 +1,7 @@
 package com.example.brigadestatement.ui.navigation.navgraph
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -91,7 +92,8 @@ fun NavGraph(
 
         NavHost(
             navController = navController,
-            startDestination = startDestination
+            startDestination = startDestination,
+            modifier = Modifier.padding(bottom = bottomPadding)
         ) {
             navigation(
                 route = Route.AppStartNavigation.route,
