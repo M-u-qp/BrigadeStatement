@@ -66,4 +66,7 @@ object Dimens {
     //ОСТАЛЬНОЕ
     val TonalElevation = 10.dp
     val BorderWidth = 1.dp
+    val IconNormalSize = 24.dp
+    val IconMediumSize = 36.dp
+    val IconLargeSize = 50.dp
 }

@@ -13,5 +13,5 @@ enum class StatusGreen(val value: String) {
 }
 
 enum class StatusGray(val value: String) {
-    UNKNOWN_CAUSES("Неизвестная причина отсутствия")
+    UNKNOWN_CAUSES("Неизвестно")
 }

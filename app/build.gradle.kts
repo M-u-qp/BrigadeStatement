@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.brigadestatement"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -69,6 +69,9 @@ dependencies {
 
     //Compose Navigation
     implementation (libs.androidx.navigation.compose)
+
+    //Compose Foundation
+    implementation (libs.androidx.foundation)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
