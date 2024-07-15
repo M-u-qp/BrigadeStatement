@@ -1,8 +1,9 @@
-package com.example.brigadestatement.domain.usecases.db
+package com.example.brigadestatement.domain.usecases.brigade
 
 data class BrigadeUseCases(
     val upsertEmployee: UpsertEmployee,
     val updateEmployee: UpdateEmployee,
     val deleteEmployee: DeleteEmployee,
-    val getAllBrigadeEmployees: GetAllBrigadeEmployees
+    val getAllBrigadeEmployees: GetAllBrigadeEmployees,
+    val getBrigade: GetBrigade
 )

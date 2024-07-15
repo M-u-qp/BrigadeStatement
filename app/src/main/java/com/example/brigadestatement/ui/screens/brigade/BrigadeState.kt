@@ -1,4 +1,8 @@
 package com.example.brigadestatement.ui.screens.brigade
 
-class BrigadeState {
-}
+import com.example.brigadestatement.domain.model.Employee
+
+data class BrigadeState(
+    val listBrigade: List<Employee> = emptyList(),
+    val errorBrigade: String? = null,
+)

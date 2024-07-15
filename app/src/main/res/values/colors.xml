@@ -5,6 +5,16 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#272727</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="black">#272727</color>
+    <color name="gray">#8F8F8F</color>
+
+    <color name="green_card">#7BE4B3</color>
+    <color name="green_border">#0C877B</color>
+    <color name="red_card">#ED9E9E</color>
+    <color name="red_border">#8F0B0B</color>
+    <color name="gray_card">#CACACA</color>
+    <color name="gray_border">#333333</color>
+
 </resources>

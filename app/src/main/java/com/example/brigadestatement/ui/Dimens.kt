@@ -1,8 +1,10 @@
 package com.example.brigadestatement.ui
 
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 object Dimens {
+    //ОТСТУПЫ
     val PaddingExtraSmall1 = 1.dp
     val PaddingExtraSmall2 = 2.dp
     val PaddingExtraSmall3 = 3.dp
@@ -34,6 +36,34 @@ object Dimens {
     val PaddingMedium9 = 29.dp
     val PaddingMedium10 = 30.dp
 
+    //РАЗМЕРЫ ТЕКСТА
+    val FontSizeSmall1 = 6.sp
+    val FontSizeSmall2 = 7.sp
+    val FontSizeSmall3 = 8.sp
+    val FontSizeSmall4 = 9.sp
+    val FontSizeSmall5 = 10.sp
 
+    val FontSizeMedium1 = 11.sp
+    val FontSizeMedium2 = 12.sp
+    val FontSizeMedium3 = 13.sp
+    val FontSizeMedium4 = 14.sp
+    val FontSizeMedium5 = 15.sp
+
+    val FontSizeLarge1 = 16.sp
+    val FontSizeLarge2 = 17.sp
+    val FontSizeLarge3 = 18.sp
+    val FontSizeLarge4 = 19.sp
+    val FontSizeLarge5 = 20.sp
+
+    val FontSizeExtraLarge1 = 21.sp
+    val FontSizeExtraLarge2 = 22.sp
+    val FontSizeExtraLarge3 = 23.sp
+    val FontSizeExtraLarge4 = 24.sp
+    val FontSizeExtraLarge5 = 25.sp
+
+
+
+    //ОСТАЛЬНОЕ
     val TonalElevation = 10.dp
+    val BorderWidth = 1.dp
 }

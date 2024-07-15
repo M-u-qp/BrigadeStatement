@@ -1,4 +1,4 @@
-package com.example.brigadestatement.domain.usecases.db
+package com.example.brigadestatement.domain.usecases.brigade
 
 import com.example.brigadestatement.domain.model.Employee
 import com.example.brigadestatement.domain.repository.BrigadeRepository

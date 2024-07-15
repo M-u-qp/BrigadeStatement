@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,6 +22,7 @@ import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.navigation.components.BottomNavigation
 import com.example.brigadestatement.ui.navigation.components.BottomNavigationItem
 import com.example.brigadestatement.ui.screens.brigade.BrigadeScreen
+import com.example.brigadestatement.ui.screens.brigade.BrigadeViewModel
 import com.example.brigadestatement.ui.screens.employees.EmployeesScreen
 import com.example.brigadestatement.ui.screens.statement.StatementScreen
 
@@ -100,7 +103,9 @@ fun NavGraph(
                 startDestination = Route.BrigadeScreen.route
             ) {
                 composable(route = Route.BrigadeScreen.route) {
-                    BrigadeScreen()
+                    val viewModel: BrigadeViewModel = hiltViewModel()
+                    val state = viewModel.state.collectAsState().value
+                    BrigadeScreen(state = state)
                 }
                 composable(route = Route.StatementScreen.route) {
                     StatementScreen()
