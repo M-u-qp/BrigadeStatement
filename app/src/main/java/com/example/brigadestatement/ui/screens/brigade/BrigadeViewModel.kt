@@ -7,6 +7,7 @@ import com.example.brigadestatement.domain.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,6 +25,8 @@ class BrigadeViewModel @Inject constructor(
             getBrigade()
         }
     }
+
+    //Получить текущую бригаду с сервера
     private suspend fun getBrigade() {
         if (state.value.listBrigade.isEmpty()) {
             when (val listBrigade = brigadeUseCases.getBrigade()) {
@@ -44,5 +47,25 @@ class BrigadeViewModel @Inject constructor(
                 else -> Unit
             }
         }
+    }
+
+    //Получить текущую бригаду за сегодняшний день
+    suspend fun getBrigadeEmployees(date: String) {
+        val result = brigadeUseCases.getBrigadeEmployees(date).first()
+        if (result.isNotEmpty()){
+            _state.value = _state.value.copy(currentBrigade = result)
+        }
+    }
+
+    //Отправить табель
+    suspend fun sendStatement() {
+        brigadeUseCases.insertBrigade(state.value.listBrigade)
+    }
+
+    fun updateChoiceGoodOrBadStatus(choice: Boolean) {
+        _state.value = _state.value.copy(goodOrBadStatus = choice)
+    }
+    fun updateVisibleDialogStatus(show: Boolean) {
+        _state.value = _state.value.copy(showDialogStatus = show)
     }
 }

@@ -1,7 +1,73 @@
 package com.example.brigadestatement.ui.screens.statement
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.brigadestatement.R
+import com.example.brigadestatement.ui.Dimens
+import com.example.brigadestatement.ui.common.currentDate
 
 @Composable
-fun StatementScreen() {
+fun StatementScreen(
+    viewModel: StatementViewModel = hiltViewModel(),
+    state: StatementState
+) {
+    LaunchedEffect(key1 = true) {
+        viewModel.getBrigadeEmployees(currentDate())
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = Dimens.PaddingMedium4)
+            .padding(horizontal = Dimens.PaddingMedium4)
+    ) {
+        Text(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            text = stringResource(id = R.string.Statement),
+            style = MaterialTheme.typography.displayMedium.copy(
+                fontWeight = FontWeight.Bold,
+                fontSize = Dimens.FontSizeExtraLarge5
+            )
+        )
+
+        Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
+
+        Box {
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(Dimens.PaddingExtraSmall6)
+            ) {
+                if (state.currentBrigade.isNotEmpty()) {
+                    item {
+                        Text(
+                            text = "${state.currentBrigade.first()?.date}",
+                            style = MaterialTheme.typography.labelMedium,
+                            )
+                    }
+                    items(state.currentBrigade) { employee ->
+                        employee?.let {
+                            Text(text = "${employee.firstName} ${employee.lastName}")
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

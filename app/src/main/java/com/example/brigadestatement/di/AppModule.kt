@@ -12,6 +12,8 @@ import com.example.brigadestatement.domain.usecases.brigade.BrigadeUseCases
 import com.example.brigadestatement.domain.usecases.brigade.DeleteEmployee
 import com.example.brigadestatement.domain.usecases.brigade.GetAllBrigadeEmployees
 import com.example.brigadestatement.domain.usecases.brigade.GetBrigade
+import com.example.brigadestatement.domain.usecases.brigade.GetBrigadeEmployees
+import com.example.brigadestatement.domain.usecases.brigade.InsertBrigade
 import com.example.brigadestatement.domain.usecases.brigade.UpdateEmployee
 import com.example.brigadestatement.domain.usecases.brigade.UpsertEmployee
 import dagger.Module
@@ -34,7 +36,9 @@ object AppModule {
             updateEmployee = UpdateEmployee(brigadeRepository),
             deleteEmployee = DeleteEmployee(brigadeRepository),
             getAllBrigadeEmployees = GetAllBrigadeEmployees(brigadeRepository),
-            getBrigade = GetBrigade(brigadeRepository)
+            getBrigade = GetBrigade(brigadeRepository),
+            getBrigadeEmployees = GetBrigadeEmployees(brigadeRepository),
+            insertBrigade = InsertBrigade(brigadeRepository)
         )
     }
 

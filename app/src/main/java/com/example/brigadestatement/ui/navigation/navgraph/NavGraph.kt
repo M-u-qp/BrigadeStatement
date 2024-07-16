@@ -25,6 +25,7 @@ import com.example.brigadestatement.ui.screens.brigade.BrigadeScreen
 import com.example.brigadestatement.ui.screens.brigade.BrigadeViewModel
 import com.example.brigadestatement.ui.screens.employees.EmployeesScreen
 import com.example.brigadestatement.ui.screens.statement.StatementScreen
+import com.example.brigadestatement.ui.screens.statement.StatementViewModel
 
 @Composable
 fun NavGraph(
@@ -108,7 +109,9 @@ fun NavGraph(
                     BrigadeScreen(state = state)
                 }
                 composable(route = Route.StatementScreen.route) {
-                    StatementScreen()
+                    val viewModel: StatementViewModel = hiltViewModel()
+                    val state = viewModel.state.collectAsState().value
+                    StatementScreen(state = state)
                 }
                 composable(route = Route.EmployeesScreen.route) {
                     EmployeesScreen()

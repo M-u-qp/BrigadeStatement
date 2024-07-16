@@ -1,181 +1,122 @@
 package com.example.brigadestatement.data.remote
 
 import com.example.brigadestatement.data.remote.dto.BrigadeResponse
-import com.example.brigadestatement.domain.model.Employee
-import kotlinx.coroutines.delay
+import com.example.brigadestatement.domain.model.BrigadeEmployee
+import com.example.brigadestatement.ui.common.currentDate
 
 class BrigadeApiImpl : BrigadeApi {
     override suspend fun getListBrigade(): BrigadeResponse {
-        delay(1000)
+        val date = currentDate()
+
         return BrigadeResponse(
             listOf(
-                Employee(
-                    id = 1,
+                BrigadeEmployee(
+                    plotNumber = "1234501",
                     firstName = "Иван",
                     lastName = "Иванов",
                     patronymic = "Иванович",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "слесарь",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 2,
+                BrigadeEmployee(
+                    plotNumber = "1234502",
                     firstName = "Петр",
                     lastName = "Петров",
                     patronymic = "Петрович",
                     status = "Больничный",
-                    age = null,
-                    address = null,
                     position = "водитель",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 3,
+                BrigadeEmployee(
+                    plotNumber = "1234503",
                     firstName = "Игорь",
                     lastName = "Игорев",
                     patronymic = "Игоревич",
                     status = "Неизвестно",
-                    age = null,
-                    address = null,
                     position = "рабочий",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 4,
+                BrigadeEmployee(
+                    plotNumber = "1234504",
                     firstName = "Анна",
                     lastName = "Иванова",
                     patronymic = "Ивановна",
                     status = "Отпуск",
-                    age = null,
-                    address = null,
                     position = "швея",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 5,
+                BrigadeEmployee(
+                    plotNumber = "1234505",
                     firstName = "Татьяна",
                     lastName = "Петрова",
                     patronymic = "Петровна",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "фельдшер",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 6,
+                BrigadeEmployee(
+                    plotNumber = "1234506",
                     firstName = "Олег",
                     lastName = "Сидоров",
                     patronymic = "Сидорович",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "технолог",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 7,
+                BrigadeEmployee(
+                    plotNumber = "1234507",
                     firstName = "Мария",
                     lastName = "Сидорова",
                     patronymic = "Сидоровна",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "технолог",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 8,
+                BrigadeEmployee(
+                    plotNumber = "1234508",
                     firstName = "Василий",
                     lastName = "Васин",
                     patronymic = "Васильевич",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "слесарь",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 9,
+                BrigadeEmployee(
+                    plotNumber = "1234509",
                     firstName = "Марина",
                     lastName = "Васина",
                     patronymic = "Васильевна",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "фасовщица",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 10,
+                BrigadeEmployee(
+                    plotNumber = "1234510",
                     firstName = "Александр",
                     lastName = "Александрин",
                     patronymic = "Александрович",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "грузчик",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 11,
+                BrigadeEmployee(
+                    plotNumber = "1234511",
                     firstName = "Дмитрий",
                     lastName = "Дмитров",
                     patronymic = "Дмитриевич",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "грузчик",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
-                Employee(
-                    id = 12,
+                BrigadeEmployee(
+                    plotNumber = "1234512",
                     firstName = "Михаил",
                     lastName = "Мишин",
                     patronymic = "Михайлович",
                     status = "На смене",
-                    age = null,
-                    address = null,
                     position = "разнорабочий",
-                    division = null,
-                    plotNumber = null,
-                    employeeNumber = null,
-                    phoneNumber = null
+                    date = date
                 ),
             )
         )

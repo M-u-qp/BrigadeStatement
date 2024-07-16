@@ -2,4 +2,8 @@
     <string name="app_name">BrigadeStatement</string>
 
     <string name="My_brigade">Моя бригада</string>
+    <string name="Statement">Табель</string>
+    <string name="Employees">Сотрудники</string>
+
+    <string name="Send_statement">Отправить табель</string>
 </resources>

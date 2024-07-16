@@ -1,10 +1,10 @@
 package com.example.brigadestatement.data.repository
 
 import com.example.brigadestatement.data.local.dao.BrigadeDao
+import com.example.brigadestatement.data.mapper.toBrigadeEmployee
 import com.example.brigadestatement.data.mapper.toBrigadeEntity
-import com.example.brigadestatement.data.mapper.toEmployee
 import com.example.brigadestatement.data.remote.BrigadeApi
-import com.example.brigadestatement.domain.model.Employee
+import com.example.brigadestatement.domain.model.BrigadeEmployee
 import com.example.brigadestatement.domain.repository.BrigadeRepository
 import com.example.brigadestatement.domain.utils.Resource
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +15,7 @@ class BrigadeRepositoryImpl(
     private val brigadeDao: BrigadeDao
 ) : BrigadeRepository {
 
-    override suspend fun getListBrigade(): Resource<List<Employee>> {
+    override suspend fun getListBrigade(): Resource<List<BrigadeEmployee>> {
         return try {
             val result = brigadeApi.getListBrigade().listBrigade
             if (result.isNotEmpty()) {
@@ -30,20 +30,29 @@ class BrigadeRepositoryImpl(
     }
 
     //БД
-    override suspend fun upsertEmployee(employee: Employee) {
-        brigadeDao.upsertEmployee(employee.toBrigadeEntity())
+    override suspend fun upsertEmployee(brigadeEmployee: BrigadeEmployee) {
+        brigadeDao.upsertEmployee(brigadeEmployee.toBrigadeEntity())
     }
 
-    override suspend fun updateEmployee(employee: Employee) {
-        brigadeDao.updateEmployee(employee.toBrigadeEntity())
+    override suspend fun updateEmployee(brigadeEmployee: BrigadeEmployee) {
+        brigadeDao.updateEmployee(brigadeEmployee.toBrigadeEntity())
     }
 
-    override suspend fun deleteEmployee(employee: Employee) {
-        brigadeDao.deleteEmployee(employee.toBrigadeEntity())
+    override suspend fun deleteEmployee(brigadeEmployee: BrigadeEmployee) {
+        brigadeDao.deleteEmployee(brigadeEmployee.toBrigadeEntity())
     }
 
-    override fun getAllBrigadeEmployees(): Flow<List<Employee?>> {
+    override suspend fun insertBrigadeEmployees(employees: List<BrigadeEmployee>) {
+        brigadeDao.insertBrigade(employees.map { it.toBrigadeEntity() })
+    }
+
+    override fun getAllBrigadeEmployees(): Flow<List<BrigadeEmployee?>> {
         return brigadeDao.getAllBrigadeEmployees()
-            .map { listEmployees -> listEmployees.map { it?.toEmployee() } }
+            .map { listEmployees -> listEmployees.map { it?.toBrigadeEmployee() } }
+    }
+
+    override fun getBrigadeEmployees(date: String): Flow<List<BrigadeEmployee?>> {
+        return brigadeDao.getBrigadeEmployees(date)
+            .map { employees -> employees.map { it?.toBrigadeEmployee() } }
     }
 }

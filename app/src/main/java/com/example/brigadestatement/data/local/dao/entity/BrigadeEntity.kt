@@ -5,10 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class BrigadeEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    val plotNumber: String,
     val firstName: String,
     val lastName: String,
     val patronymic: String,
     val status: String,
-    val position: String
+    val position: String,
+    val date: String
 )

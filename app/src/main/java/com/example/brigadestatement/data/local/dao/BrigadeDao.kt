@@ -21,6 +21,12 @@ interface BrigadeDao {
     @Update
     suspend fun updateEmployee(employee: BrigadeEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertBrigade(employees: List<BrigadeEntity>)
+
     @Query("SELECT * FROM BrigadeEntity")
-fun getAllBrigadeEmployees(): Flow<List<BrigadeEntity?>>
+    fun getAllBrigadeEmployees(): Flow<List<BrigadeEntity?>>
+
+    @Query("SELECT * FROM BrigadeEntity WHERE date=:date")
+    fun getBrigadeEmployees(date: String): Flow<List<BrigadeEntity?>>
 }

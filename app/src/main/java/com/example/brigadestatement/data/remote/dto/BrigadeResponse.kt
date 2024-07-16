@@ -1,7 +1,7 @@
 package com.example.brigadestatement.data.remote.dto
 
-import com.example.brigadestatement.domain.model.Employee
+import com.example.brigadestatement.domain.model.BrigadeEmployee
 
 data class BrigadeResponse(
-    val listBrigade: List<Employee>
+    val listBrigade: List<BrigadeEmployee>
 )
