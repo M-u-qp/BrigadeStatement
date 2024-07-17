@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
@@ -15,14 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.Dimens
 import com.example.brigadestatement.ui.Dimens.BorderWidth
 import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall8
 import com.example.brigadestatement.ui.Dimens.PaddingSmall6
-import com.example.brigadestatement.ui.common.StatusGreen
-import com.example.brigadestatement.ui.common.StatusRed
+import com.example.brigadestatement.ui.common.getColorOrIcon
 
 @Composable
 fun CardEmployee(
@@ -32,43 +33,38 @@ fun CardEmployee(
     status: String,
     position: String
 ) {
-    val containerColor = when(status) {
-        in StatusGreen.entries.map { it.value }.toString() -> colorResource(id = R.color.green_card)
-        in StatusRed.entries.map { it.value }.toString() -> colorResource(id = R.color.red_card)
-        else -> colorResource(id = R.color.gray_card)
-    }
 
-    val containerBorderColor = when(status) {
-        in StatusGreen.entries.map { it.value }.toString() -> colorResource(id = R.color.green_border)
-        in StatusRed.entries.map { it.value }.toString() -> colorResource(id = R.color.red_border)
-        else -> colorResource(id = R.color.gray_border)
-    }
+    val containerColor = getColorOrIcon(value = status, id = 0)
+    val containerBorderColor = getColorOrIcon(value = status, id = 1)
+    val icon = getColorOrIcon(value = status, id = 2)
+
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = containerColor
+            containerColor = colorResource(id = containerColor)
         ),
-        border = BorderStroke(width = BorderWidth, color = containerBorderColor),
+        border = BorderStroke(
+            width = BorderWidth,
+            color = colorResource(id = containerBorderColor)
+        ),
         shape = ShapeDefaults.Medium
     ) {
-        Column(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = PaddingExtraSmall8, vertical = PaddingSmall6),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = "$firstName $lastName",
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = Dimens.FontSizeLarge3,
-                    fontWeight = FontWeight.Medium,
-                    color = colorResource(id = R.color.black)
+            Column {
+                Text(
+                    text = "$firstName $lastName",
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontSize = Dimens.FontSizeLarge3,
+                        fontWeight = FontWeight.Medium,
+                        color = colorResource(id = R.color.black)
+                    )
                 )
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
+
                 Text(
                     text = position,
                     style = MaterialTheme.typography.bodyMedium.copy(
@@ -78,16 +74,23 @@ fun CardEmployee(
                         )
                     )
                 )
+            }
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    painter = painterResource(id = icon),
+                    contentDescription = null,
+                    tint = colorResource(id = containerBorderColor)
+                )
 
                 Text(
                     text = status,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontSize = Dimens.FontSizeLarge1,
-                        color = containerBorderColor
+                        color = colorResource(id = containerBorderColor)
                     )
                 )
             }
-
         }
     }
 }
