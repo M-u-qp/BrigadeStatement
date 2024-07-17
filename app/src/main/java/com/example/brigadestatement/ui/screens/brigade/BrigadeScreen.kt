@@ -15,11 +15,12 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
@@ -58,8 +59,15 @@ fun BrigadeScreen(
     val density = LocalDensity.current
     val scope = rememberCoroutineScope()
 
+    LaunchedEffect(key1 = true) {
+        viewModel.getBrigadeEmployees(currentDate())
+    }
+
     if (state.showDialogStatus) {
-        DialogStatus(viewModel = viewModel, goodOrBadStatus = state.goodOrBadStatus)
+        DialogStatus(
+            viewModel = viewModel,
+            goodOrBadStatus = state.goodOrBadStatus
+        )
     }
 
     Column(
@@ -84,8 +92,11 @@ fun BrigadeScreen(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(PaddingExtraSmall6)
             ) {
-                items(state.listBrigade) { employee ->
+                itemsIndexed(
+                    state.currentBrigade.ifEmpty { state.listBrigade }
+                ) { index, employee ->
                     Box {
+                        var offsetX by remember { mutableFloatStateOf(0f) }
                         //Кнопка вызова диалога со статусами сотрудника
                         Row(
                             modifier = Modifier
@@ -95,6 +106,8 @@ fun BrigadeScreen(
                         ) {
                             ButtonDialogStatus(
                                 onClick = {
+                                    offsetX = 0f
+                                    viewModel.updateCurrentIndex(index)
                                     viewModel.updateChoiceGoodOrBadStatus(choice = true)
                                     viewModel.updateVisibleDialogStatus(show = true)
                                 },
@@ -105,6 +118,8 @@ fun BrigadeScreen(
                             Spacer(modifier = Modifier.width(PaddingExtraSmall6))
                             ButtonDialogStatus(
                                 onClick = {
+                                    offsetX = 0f
+                                    viewModel.updateCurrentIndex(index)
                                     viewModel.updateChoiceGoodOrBadStatus(choice = false)
                                     viewModel.updateVisibleDialogStatus(show = true)
                                 },
@@ -115,7 +130,7 @@ fun BrigadeScreen(
                         }
 
                         //Сдвиг на середину экрана карточки сотрудника
-                        var offsetX by remember { mutableFloatStateOf(0f) }
+
                         val screenWidth = LocalConfiguration.current.screenWidthDp
                         val targetOffsetX = (screenWidth / 2) * density.density
                         Box(
@@ -152,13 +167,10 @@ fun BrigadeScreen(
 
             Button(
                 modifier = Modifier.align(Alignment.BottomCenter),
-                enabled = state.currentBrigade.isEmpty(),
+                enabled = state.currentBrigade.isEmpty() || state.changedStatusEmployee,
                 onClick = {
                     scope.launch {
                         viewModel.sendStatement()
-                    }
-                    scope.launch {
-                        viewModel.getBrigadeEmployees(currentDate())
                     }
                 },
                 shape = MaterialTheme.shapes.medium

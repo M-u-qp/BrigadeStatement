@@ -7,6 +7,7 @@ data class BrigadeState(
     val errorBrigade: String? = null,
     val showDialogStatus: Boolean = false,
     val goodOrBadStatus: Boolean = false,
-    val currentBrigade: List<BrigadeEmployee?> = emptyList(),
-
+    val currentBrigade: List<BrigadeEmployee> = emptyList(),
+    val changedStatusEmployee: Boolean = false,
+    val currentIndex: Int = 0,
 )

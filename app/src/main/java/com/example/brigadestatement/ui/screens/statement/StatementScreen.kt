@@ -3,6 +3,7 @@ package com.example.brigadestatement.ui.screens.statement
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -51,7 +53,7 @@ fun StatementScreen(
 
         Box {
             LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = Dimens.PaddingExtraSmall8),
                 verticalArrangement = Arrangement.spacedBy(Dimens.PaddingExtraSmall6)
             ) {
                 if (state.currentBrigade.isNotEmpty()) {
@@ -63,7 +65,27 @@ fun StatementScreen(
                     }
                     items(state.currentBrigade) { employee ->
                         employee?.let {
-                            Text(text = "${employee.firstName} ${employee.lastName}")
+
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = "${employee.firstName} ${employee.lastName}",
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        fontSize = Dimens.FontSizeLarge3,
+                                        fontWeight = FontWeight.Medium,
+                                        color = colorResource(id = R.color.black)
+                                    )
+                                )
+                                Text(
+                                    text = employee.status,
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        fontSize = Dimens.FontSizeLarge1
+                                    )
+                                )
+                            }
                         }
                     }
                 }

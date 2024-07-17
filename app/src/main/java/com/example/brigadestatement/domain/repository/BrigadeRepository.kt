@@ -10,10 +10,10 @@ interface BrigadeRepository {
 
     //БД
     suspend fun upsertEmployee(brigadeEmployee: BrigadeEmployee)
-    suspend fun updateEmployee(brigadeEmployee: BrigadeEmployee)
+    suspend fun updateBrigadeEmployee(id: Int, status: String)
     suspend fun deleteEmployee(brigadeEmployee: BrigadeEmployee)
     suspend fun insertBrigadeEmployees(employees: List<BrigadeEmployee>)
     fun getAllBrigadeEmployees(): Flow<List<BrigadeEmployee?>>
-    fun getBrigadeEmployees(date: String): Flow<List<BrigadeEmployee?>>
+    fun getBrigadeEmployees(date: String): Flow<List<BrigadeEmployee>>
 
 }

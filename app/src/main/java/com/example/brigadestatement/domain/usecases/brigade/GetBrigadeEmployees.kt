@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class GetBrigadeEmployees(
     private val brigadeRepository: BrigadeRepository
 ) {
-    operator fun invoke(date: String): Flow<List<BrigadeEmployee?>> {
+    operator fun invoke(date: String): Flow<List<BrigadeEmployee>> {
         return brigadeRepository.getBrigadeEmployees(date = date)
     }
 }

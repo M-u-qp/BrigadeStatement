@@ -58,7 +58,7 @@ fun DialogStatus(
                             .fillMaxWidth()
                             .padding(vertical = PaddingSmall6)
                             .clickable {
-
+                                viewModel.updateStatusEmployee(status = it.value)
                                 viewModel.updateVisibleDialogStatus(show = false)
                             }
                             .background(
@@ -89,7 +89,7 @@ fun DialogStatus(
                             .fillMaxWidth()
                             .padding(vertical = PaddingSmall6)
                             .clickable {
-
+                                viewModel.updateStatusEmployee(status = it.value)
                                 viewModel.updateVisibleDialogStatus(show = false)
                             }
                             .background(

@@ -34,8 +34,8 @@ class BrigadeRepositoryImpl(
         brigadeDao.upsertEmployee(brigadeEmployee.toBrigadeEntity())
     }
 
-    override suspend fun updateEmployee(brigadeEmployee: BrigadeEmployee) {
-        brigadeDao.updateEmployee(brigadeEmployee.toBrigadeEntity())
+    override suspend fun updateBrigadeEmployee(id: Int, status: String) {
+        brigadeDao.updateBrigadeEmployee(id = id, status = status)
     }
 
     override suspend fun deleteEmployee(brigadeEmployee: BrigadeEmployee) {
@@ -51,8 +51,8 @@ class BrigadeRepositoryImpl(
             .map { listEmployees -> listEmployees.map { it?.toBrigadeEmployee() } }
     }
 
-    override fun getBrigadeEmployees(date: String): Flow<List<BrigadeEmployee?>> {
+    override fun getBrigadeEmployees(date: String): Flow<List<BrigadeEmployee>> {
         return brigadeDao.getBrigadeEmployees(date)
-            .map { employees -> employees.map { it?.toBrigadeEmployee() } }
+            .map { employees -> employees.map { it.toBrigadeEmployee() } }
     }
 }

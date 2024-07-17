@@ -5,6 +5,7 @@ import com.example.brigadestatement.domain.model.BrigadeEmployee
 
 fun BrigadeEmployee.toBrigadeEntity(): BrigadeEntity {
     return BrigadeEntity(
+        id = id,
         plotNumber = plotNumber,
         firstName = firstName,
         lastName = lastName,
@@ -17,6 +18,7 @@ fun BrigadeEmployee.toBrigadeEntity(): BrigadeEntity {
 
 fun BrigadeEntity.toBrigadeEmployee(): BrigadeEmployee {
     return BrigadeEmployee(
+        id = id,
         plotNumber = plotNumber,
         firstName = firstName,
         lastName = lastName,
