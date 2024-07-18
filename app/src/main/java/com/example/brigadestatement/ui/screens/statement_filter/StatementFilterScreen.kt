@@ -7,98 +7,82 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.Dimens
-import com.example.brigadestatement.ui.Dimens.FontSizeLarge1
-import com.example.brigadestatement.ui.Dimens.FontSizeMedium4
 import com.example.brigadestatement.ui.Dimens.PaddingMedium4
 import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.NavigateUpBar
+import com.example.brigadestatement.ui.screens.statement_filter.components.DialogEmployees
+import com.example.brigadestatement.ui.screens.statement_filter.components.FilterElementToSelect
 
 @Composable
 fun StatementFilterScreen(
+    viewModel: StatementFilterViewModel = hiltViewModel(),
+    state: StatementFilterState,
     navigateToStatement: () -> Unit,
     navigateUp: () -> Unit
 ) {
 
+    if (state.showDialogEmployees) {
+        DialogEmployees(viewModel = viewModel, state = state)
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(PaddingMedium4)
-        ) {
+        Column(modifier = Modifier.fillMaxWidth()) {
             val title = stringResource(id = R.string.Search_parameters)
-            NavigateUpBar(navigateUp = navigateUp, text = title)
+            NavigateUpBar(
+                modifier = Modifier.padding(horizontal = PaddingMedium4),
+                navigateUp = navigateUp,
+                text = title
+            )
 
             Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 
-            val nameSelectedEmployees = stringResource(id = R.string.Selected_employees)
-            Text(
-                text = "$nameSelectedEmployees:",
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Medium,
-                    fontSize = FontSizeLarge1,
-                    color = colorResource(id = R.color.black)
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall10))
+            val selectedEmployees = if (state.selectEmployees.isEmpty()) {
+                stringResource(id = R.string.Employees_for_finding)
+            } else {
+                state.selectEmployees.joinToString (", "){ "${it.firstName} ${it.lastName}" }
+            }
 
-            Text(
-                text = stringResource(id = R.string.Employees_for_finding),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = FontSizeMedium4,
-                    color = colorResource(id = R.color.gray)
-                )
+            FilterElementToSelect(
+                modifier = Modifier.padding(horizontal = PaddingMedium4),
+                nameFilter = stringResource(id = R.string.Selected_employees),
+                selectedFilters = selectedEmployees,
+                onClick = { viewModel.updateVisibleDialogEmployees(true) }
             )
 
-            Spacer(modifier = Modifier.height(Dimens.PaddingSmall10))
-            val nameSelectedDates = stringResource(id = R.string.Selected_dates)
-            Text(
-                text = "$nameSelectedDates:",
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Medium,
-                    fontSize = FontSizeLarge1,
-                    color = colorResource(id = R.color.black)
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall10))
+            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 
-            Text(
-                text = stringResource(id = R.string.Dates_for_finding),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = FontSizeMedium4,
-                    color = colorResource(id = R.color.gray)
-                )
+            FilterElementToSelect(
+                modifier = Modifier.padding(horizontal = PaddingMedium4),
+                nameFilter = stringResource(id = R.string.Selected_dates),
+                selectedFilters = stringResource(id = R.string.Dates_for_finding),
+                onClick = { viewModel.updateVisibleDialogDates(true) }
             )
 
-            Spacer(modifier = Modifier.height(Dimens.PaddingSmall10))
+            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 
-            val nameSelectedStatus = stringResource(id = R.string.Selected_status)
-            Text(
-                text = "$nameSelectedStatus:",
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Medium,
-                    fontSize = FontSizeLarge1,
-                    color = colorResource(id = R.color.black)
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall10))
-            Text(
-                text = stringResource(id = R.string.Status_for_finding),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = FontSizeMedium4,
-                    color = colorResource(id = R.color.gray)
-                )
+            FilterElementToSelect(
+                modifier = Modifier.padding(horizontal = PaddingMedium4),
+                nameFilter = stringResource(id = R.string.Selected_status),
+                selectedFilters = stringResource(id = R.string.Status_for_finding),
+                onClick = { viewModel.updateVisibleDialogStatus(true) }
             )
 
+            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            HorizontalDivider()
             Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 
         }

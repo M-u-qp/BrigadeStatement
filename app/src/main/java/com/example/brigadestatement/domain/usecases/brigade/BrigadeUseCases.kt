@@ -7,5 +7,7 @@ data class BrigadeUseCases(
     val getAllBrigadeEmployees: GetAllBrigadeEmployees,
     val getBrigade: GetBrigade,
     val getBrigadeEmployees: GetBrigadeEmployees,
-    val insertBrigade: InsertBrigade
+    val insertBrigade: InsertBrigade,
+    val getEmployees: GetEmployees,
+
 )

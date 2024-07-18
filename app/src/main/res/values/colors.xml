@@ -9,6 +9,7 @@
 
     <color name="black">#272727</color>
     <color name="gray">#8F8F8F</color>
+    <color name="gray_light">#E9E9E9</color>
 
     <color name="green_card">#7BE4B3</color>
     <color name="green_border">#0C877B</color>

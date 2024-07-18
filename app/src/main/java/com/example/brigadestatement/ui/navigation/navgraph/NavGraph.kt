@@ -124,7 +124,10 @@ fun NavGraph(
                 }
                 composable(route = Route.StatementFilterScreen.route) {
                     val viewModel: StatementFilterViewModel = hiltViewModel()
+                    val state = viewModel.state.collectAsState().value
                     StatementFilterScreen(
+                        viewModel = viewModel,
+                        state = state,
                         navigateToStatement = {},
                         navigateUp = { navController.navigateUp() }
                     )

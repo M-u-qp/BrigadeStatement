@@ -20,6 +20,7 @@
     <string name="Employees_for_finding">Выберите сотрудников для поиска</string>
     <string name="Dates_for_finding">Выберите даты для поиска</string>
     <string name="Status_for_finding">Выберите статусы для поиска</string>
+    <string name="Select_all">Выбрать всех</string>
     
     //EmployeesScreen
 

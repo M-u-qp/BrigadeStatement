@@ -13,6 +13,7 @@ import com.example.brigadestatement.domain.usecases.brigade.DeleteEmployee
 import com.example.brigadestatement.domain.usecases.brigade.GetAllBrigadeEmployees
 import com.example.brigadestatement.domain.usecases.brigade.GetBrigade
 import com.example.brigadestatement.domain.usecases.brigade.GetBrigadeEmployees
+import com.example.brigadestatement.domain.usecases.brigade.GetEmployees
 import com.example.brigadestatement.domain.usecases.brigade.InsertBrigade
 import com.example.brigadestatement.domain.usecases.brigade.UpdateBrigadeEmployee
 import com.example.brigadestatement.domain.usecases.brigade.UpsertEmployee
@@ -39,6 +40,7 @@ object AppModule {
             getBrigade = GetBrigade(brigadeRepository),
             getBrigadeEmployees = GetBrigadeEmployees(brigadeRepository),
             insertBrigade = InsertBrigade(brigadeRepository),
+            getEmployees = GetEmployees(brigadeRepository)
         )
     }
 

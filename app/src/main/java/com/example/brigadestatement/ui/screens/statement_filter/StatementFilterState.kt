@@ -5,6 +5,8 @@ import com.example.brigadestatement.domain.model.Employee
 
 data class StatementFilterState(
     val allEmployees: List<Employee> = emptyList(),
+    val errorEmployees: String? = null,
+
     val employeesFiltered: List<BrigadeEmployee> = emptyList(),
     val selectStatus: List<String> = emptyList(),
     val selectEmployees: List<Employee> = emptyList(),

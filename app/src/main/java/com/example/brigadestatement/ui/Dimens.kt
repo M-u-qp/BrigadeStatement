@@ -35,6 +35,16 @@ object Dimens {
     val PaddingMedium8 = 28.dp
     val PaddingMedium9 = 29.dp
     val PaddingMedium10 = 30.dp
+    val PaddingLarge1 = 31.dp
+    val PaddingLarge2 = 32.dp
+    val PaddingLarge3 = 33.dp
+    val PaddingLarge4 = 34.dp
+    val PaddingLarge5 = 35.dp
+    val PaddingLarge6 = 36.dp
+    val PaddingLarge7 = 37.dp
+    val PaddingLarge8 = 38.dp
+    val PaddingLarge9 = 39.dp
+    val PaddingLarge10 = 40.dp
 
     //РАЗМЕРЫ ТЕКСТА
     val FontSizeSmall1 = 6.sp

@@ -1,7 +1,7 @@
 package com.example.brigadestatement.domain.model
 
 data class Employee(
-    val id: Int,
+    val id: Int = 0,
     val firstName: String,
     val lastName: String,
     val patronymic: String?,
