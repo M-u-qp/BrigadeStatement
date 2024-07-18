@@ -84,6 +84,7 @@ class BrigadeViewModel @Inject constructor(
         _state.value = _state.value.copy(currentIndex = index)
     }
 
+    //Смена статуса выбранного сотрудника
     fun updateStatusEmployee(status: String) {
         val index = state.value.currentIndex
         if (state.value.currentBrigade.isEmpty()) {

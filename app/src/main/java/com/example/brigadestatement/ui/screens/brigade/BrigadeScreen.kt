@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,12 +37,12 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.Dimens.FontSizeExtraLarge5
-import com.example.brigadestatement.ui.Dimens.FontSizeMedium4
 import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall6
 import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall8
 import com.example.brigadestatement.ui.Dimens.PaddingMedium10
 import com.example.brigadestatement.ui.Dimens.PaddingMedium4
 import com.example.brigadestatement.ui.Dimens.PaddingSmall6
+import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.currentDate
 import com.example.brigadestatement.ui.screens.brigade.components.ButtonDialogStatus
 import com.example.brigadestatement.ui.screens.brigade.components.CardEmployee
@@ -165,25 +164,16 @@ fun BrigadeScreen(
                 }
             }
 
-            Button(
+            JustButton(
                 modifier = Modifier.align(Alignment.BottomCenter),
-                enabled = state.currentBrigade.isEmpty() || state.changedStatusEmployee,
                 onClick = {
                     scope.launch {
                         viewModel.sendStatement()
                     }
                 },
-                shape = MaterialTheme.shapes.medium
-            ) {
-                Text(
-                    text = stringResource(id = R.string.Send_statement),
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = FontSizeMedium4,
-                        color = colorResource(id = R.color.white)
-                    )
-                )
-            }
+                text = stringResource(id = R.string.Send_statement),
+                enabled = state.currentBrigade.isEmpty() || state.changedStatusEmployee
+            )
         }
     }
 }

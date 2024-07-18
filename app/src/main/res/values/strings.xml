@@ -5,5 +5,22 @@
     <string name="Statement">Табель</string>
     <string name="Employees">Сотрудники</string>
 
+    //BrigadeScreen
     <string name="Send_statement">Отправить табель</string>
+    
+    //StatementScreen
+    <string name="Search_by_filters">Поиск по фильтрам</string>
+    
+    //StatementFilterScreen
+    <string name="ApplyFilters">Применить</string>
+    <string name="Search_parameters">Параметры поиска</string>
+    <string name="Selected_employees">Выбранные сотрудники</string>
+    <string name="Selected_dates">Выбранные даты</string>
+    <string name="Selected_status">Выбранные статусы</string>
+    <string name="Employees_for_finding">Выберите сотрудников для поиска</string>
+    <string name="Dates_for_finding">Выберите даты для поиска</string>
+    <string name="Status_for_finding">Выберите статусы для поиска</string>
+    
+    //EmployeesScreen
+
 </resources>

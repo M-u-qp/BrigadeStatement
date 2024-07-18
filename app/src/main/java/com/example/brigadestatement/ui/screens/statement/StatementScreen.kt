@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,12 +24,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.Dimens
+import com.example.brigadestatement.ui.Dimens.FontSizeLarge5
+import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.currentDate
 
 @Composable
 fun StatementScreen(
     viewModel: StatementViewModel = hiltViewModel(),
-    state: StatementState
+    state: StatementState,
+    navigateToFilter: () -> Unit
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getBrigadeEmployees(currentDate())
@@ -51,17 +55,33 @@ fun StatementScreen(
 
         Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
 
+        JustButton(onClick = navigateToFilter, text = stringResource(id = R.string.Search_by_filters))
+
+        Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
+
         Box {
             LazyColumn(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = Dimens.PaddingExtraSmall8),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = Dimens.PaddingExtraSmall8),
                 verticalArrangement = Arrangement.spacedBy(Dimens.PaddingExtraSmall6)
             ) {
                 if (state.currentBrigade.isNotEmpty()) {
                     item {
-                        Text(
-                            text = "${state.currentBrigade.first()?.date}",
-                            style = MaterialTheme.typography.labelMedium,
+                        Box(modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center) {
+                            Text(
+                                modifier = Modifier
+                                    .align(Alignment.Center),
+                                text = "${state.currentBrigade.first()?.date}",
+                                style = MaterialTheme.typography.labelMedium.copy(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = FontSizeLarge5,
+                                    color = colorResource(id = R.color.black)
+                                ),
                             )
+                        }
+                        Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
                     }
                     items(state.currentBrigade) { employee ->
                         employee?.let {
