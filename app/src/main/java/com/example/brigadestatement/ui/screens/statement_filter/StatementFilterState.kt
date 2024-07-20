@@ -1,6 +1,8 @@
 package com.example.brigadestatement.ui.screens.statement_filter
 
+import android.os.Parcelable
 import com.example.brigadestatement.domain.model.Employee
+import kotlinx.parcelize.Parcelize
 
 data class StatementFilterState(
     val allEmployees: List<Employee> = emptyList(),
@@ -17,6 +19,9 @@ data class StatementFilterState(
     val showDialogStatus: Boolean = false,
 )
 
+@Parcelize
 data class FilterData(
-    val selectedEmployees: List<Employee>
-)
+    val selectedEmployees: List<String>,
+    val selectedDates: String,
+    val selectedStatus: List<String>
+): Parcelable

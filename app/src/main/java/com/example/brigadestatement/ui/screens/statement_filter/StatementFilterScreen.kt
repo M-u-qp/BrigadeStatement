@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -22,14 +23,17 @@ import com.example.brigadestatement.ui.screens.statement_filter.components.Dialo
 import com.example.brigadestatement.ui.screens.statement_filter.components.DialogEmployees
 import com.example.brigadestatement.ui.screens.statement_filter.components.DialogStatus
 import com.example.brigadestatement.ui.screens.statement_filter.components.FilterElementToSelect
+import kotlinx.coroutines.launch
 
 @Composable
 fun StatementFilterScreen(
     viewModel: StatementFilterViewModel = hiltViewModel(),
     state: StatementFilterState,
-    navigateToStatement: () -> Unit,
+    navigateToStatement: (FilterData?) -> Unit,
     navigateUp: () -> Unit
 ) {
+
+    val scope = rememberCoroutineScope()
 
     if (state.showDialogEmployees) {
         DialogEmployees(viewModel = viewModel, state = state)
@@ -111,8 +115,9 @@ fun StatementFilterScreen(
         ) {
             JustButton(
                 onClick = {
-
-                    navigateToStatement()
+                    scope.launch {
+                        navigateToStatement(viewModel.updateFilterData())
+                    }
                 },
                 text = stringResource(id = R.string.ApplyFilters)
             )

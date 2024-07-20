@@ -26,6 +26,7 @@ import com.example.brigadestatement.ui.screens.brigade.BrigadeViewModel
 import com.example.brigadestatement.ui.screens.employees.EmployeesScreen
 import com.example.brigadestatement.ui.screens.statement.StatementScreen
 import com.example.brigadestatement.ui.screens.statement.StatementViewModel
+import com.example.brigadestatement.ui.screens.statement_filter.FilterData
 import com.example.brigadestatement.ui.screens.statement_filter.StatementFilterScreen
 import com.example.brigadestatement.ui.screens.statement_filter.StatementFilterViewModel
 
@@ -76,12 +77,14 @@ fun NavGraph(
                                     route = Route.BrigadeScreen.route
                                 )
                             }
+
                             1 -> {
                                 navigateToTab(
                                     navController = navController,
                                     route = Route.StatementScreen.route
                                 )
                             }
+
                             2 -> {
                                 navigateToTab(
                                     navController = navController,
@@ -113,11 +116,25 @@ fun NavGraph(
                 composable(route = Route.StatementScreen.route) {
                     val viewModel: StatementViewModel = hiltViewModel()
                     val state = viewModel.state.collectAsState().value
-                    StatementScreen(
-                        viewModel = viewModel,
-                        state = state,
-                        navigateToFilter = { navController.navigate(route = Route.StatementFilterScreen.route)}
-                    )
+                    if (navController.previousBackStackEntry?.destination?.route == Route.StatementFilterScreen.route) {
+                        navController.currentBackStackEntry?.savedStateHandle?.get<FilterData?>("filterData")
+                            ?.let { filterData ->
+                                StatementScreen(
+                                    viewModel = viewModel,
+                                    state = state,
+                                    navigateToFilter = { navController.navigate(route = Route.StatementFilterScreen.route) },
+                                    filterData = filterData
+                                )
+                            }
+                    } else {
+                        StatementScreen(
+                            viewModel = viewModel,
+                            state = state,
+                            navigateToFilter = { navController.navigate(route = Route.StatementFilterScreen.route) },
+                            filterData = null
+                        )
+                    }
+
                 }
                 composable(route = Route.EmployeesScreen.route) {
                     EmployeesScreen()
@@ -128,7 +145,12 @@ fun NavGraph(
                     StatementFilterScreen(
                         viewModel = viewModel,
                         state = state,
-                        navigateToStatement = {},
+                        navigateToStatement = { filterData ->
+                            navigateToStatement(
+                                navController = navController,
+                                filterData = filterData
+                            )
+                        },
                         navigateUp = { navController.navigateUp() }
                     )
                 }
@@ -147,4 +169,9 @@ private fun navigateToTab(navController: NavController, route: String) {
             launchSingleTop = true
         }
     }
+}
+
+private fun navigateToStatement(navController: NavController, filterData: FilterData?) {
+    navController.currentBackStackEntry?.savedStateHandle?.set("filterData", filterData)
+    navController.navigate(route = Route.StatementScreen.route)
 }

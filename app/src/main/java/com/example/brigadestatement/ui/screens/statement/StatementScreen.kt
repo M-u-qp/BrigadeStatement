@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,12 +26,14 @@ import com.example.brigadestatement.ui.Dimens
 import com.example.brigadestatement.ui.Dimens.FontSizeLarge5
 import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.currentDate
+import com.example.brigadestatement.ui.screens.statement_filter.FilterData
 
 @Composable
 fun StatementScreen(
     viewModel: StatementViewModel = hiltViewModel(),
     state: StatementState,
-    navigateToFilter: () -> Unit
+    navigateToFilter: () -> Unit,
+    filterData: FilterData?
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getBrigadeEmployees(currentDate())

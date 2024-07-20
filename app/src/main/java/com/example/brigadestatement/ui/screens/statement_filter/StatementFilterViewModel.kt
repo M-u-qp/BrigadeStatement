@@ -2,7 +2,6 @@ package com.example.brigadestatement.ui.screens.statement_filter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.brigadestatement.domain.model.Employee
 import com.example.brigadestatement.domain.usecases.brigade.BrigadeUseCases
 import com.example.brigadestatement.domain.utils.Resource
 import com.example.brigadestatement.ui.common.StatusGreen
@@ -109,7 +108,11 @@ class StatementFilterViewModel @Inject constructor(
         _state.value = _state.value.copy(selectStatus = selectedStatus)
     }
 
-    fun updateFilterData() {
-
+    fun updateFilterData(): FilterData {
+        return FilterData(
+            selectedEmployees = state.value.selectEmployees,
+            selectedDates = state.value.selectedDates,
+            selectedStatus = state.value.selectStatus
+        )
     }
 }
