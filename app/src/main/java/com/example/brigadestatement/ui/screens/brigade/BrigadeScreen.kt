@@ -128,7 +128,7 @@ fun BrigadeScreen(
                             )
                         }
 
-                        //Сдвиг на середину экрана карточки сотрудника
+                        //Свайп на середину экрана карточки сотрудника
 
                         val screenWidth = LocalConfiguration.current.screenWidthDp
                         val targetOffsetX = (screenWidth / 2) * density.density

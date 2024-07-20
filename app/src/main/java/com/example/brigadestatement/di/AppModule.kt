@@ -17,6 +17,7 @@ import com.example.brigadestatement.domain.usecases.brigade.GetEmployees
 import com.example.brigadestatement.domain.usecases.brigade.InsertBrigade
 import com.example.brigadestatement.domain.usecases.brigade.UpdateBrigadeEmployee
 import com.example.brigadestatement.domain.usecases.brigade.UpsertEmployee
+import com.example.brigadestatement.ui.util.Constants.NAME_DATABASE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -63,10 +64,11 @@ object AppModule {
     fun provideBrigadeDatabase(
         application: Application
     ): BrigadeDatabase {
-//        return Room.databaseBuilder(
-        return Room.inMemoryDatabaseBuilder(
+        return Room.databaseBuilder(
+//        return Room.inMemoryDatabaseBuilder(
             context = application,
-            klass = BrigadeDatabase::class.java
+            klass = BrigadeDatabase::class.java,
+            name = NAME_DATABASE
         )
             .fallbackToDestructiveMigration()
             .build()

@@ -15,7 +15,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Иван",
                 lastName = "Иванов",
                 patronymic = "Иванович",
-                status = "Неизвестно",
                 position = "слесарь",
                 address = Address(
                     country = "Россия",
@@ -35,7 +34,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Петр",
                 lastName = "Петров",
                 patronymic = "Петрович",
-                status = "Неизвестно",
                 position = "водитель",
                 address = Address(
                     country = "Россия",
@@ -55,7 +53,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Игорь",
                 lastName = "Игорев",
                 patronymic = "Игоревич",
-                status = "Неизвестно",
                 position = "рабочий",
                 address = Address(
                     country = "Россия",
@@ -75,7 +72,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Анна",
                 lastName = "Иванова",
                 patronymic = "Ивановна",
-                status = "Неизвестно",
                 position = "швея",
                 address = Address(
                     country = "Россия",
@@ -95,7 +91,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Татьяна",
                 lastName = "Петрова",
                 patronymic = "Петровна",
-                status = "Неизвестно",
                 position = "фельдшер",
                 address = Address(
                     country = "Россия",
@@ -115,7 +110,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Олег",
                 lastName = "Сидоров",
                 patronymic = "Сидорович",
-                status = "Неизвестно",
                 position = "технолог",
                 address = Address(
                     country = "Россия",
@@ -135,7 +129,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Мария",
                 lastName = "Сидорова",
                 patronymic = "Сидоровна",
-                status = "Неизвестно",
                 position = "технолог",
                 address = Address(
                     country = "Россия",
@@ -155,7 +148,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Василий",
                 lastName = "Васин",
                 patronymic = "Васильевич",
-                status = "Неизвестно",
                 position = "слесарь",
                 address = Address(
                     country = "Россия",
@@ -175,7 +167,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Марина",
                 lastName = "Васина",
                 patronymic = "Васильевна",
-                status = "Неизвестно",
                 position = "фасовщица",
                 address = Address(
                     country = "Россия",
@@ -195,7 +186,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Александр",
                 lastName = "Александрин",
                 patronymic = "Александрович",
-                status = "Неизвестно",
                 position = "грузчик",
                 address = Address(
                     country = "Россия",
@@ -215,7 +205,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Дмитрий",
                 lastName = "Дмитров",
                 patronymic = "Дмитриевич",
-                status = "Неизвестно",
                 position = "грузчик",
                 address = Address(
                     country = "Россия",
@@ -235,7 +224,6 @@ class BrigadeApiImpl : BrigadeApi {
                 firstName = "Михаил",
                 lastName = "Мишин",
                 patronymic = "Михайлович",
-                status = "Неизвестно",
                 position = "разнорабочий",
                 address = Address(
                     country = "Россия",
@@ -262,7 +250,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Иван",
                     lastName = "Иванов",
                     patronymic = "Иванович",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "слесарь",
                     date = date
                 ),
@@ -271,7 +259,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Петр",
                     lastName = "Петров",
                     patronymic = "Петрович",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "водитель",
                     date = date
                 ),
@@ -280,7 +268,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Игорь",
                     lastName = "Игорев",
                     patronymic = "Игоревич",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "рабочий",
                     date = date
                 ),
@@ -289,7 +277,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Анна",
                     lastName = "Иванова",
                     patronymic = "Ивановна",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "швея",
                     date = date
                 ),
@@ -298,7 +286,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Татьяна",
                     lastName = "Петрова",
                     patronymic = "Петровна",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "фельдшер",
                     date = date
                 ),
@@ -307,7 +295,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Олег",
                     lastName = "Сидоров",
                     patronymic = "Сидорович",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "технолог",
                     date = date
                 ),
@@ -316,7 +304,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Мария",
                     lastName = "Сидорова",
                     patronymic = "Сидоровна",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "технолог",
                     date = date
                 ),
@@ -325,7 +313,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Василий",
                     lastName = "Васин",
                     patronymic = "Васильевич",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "слесарь",
                     date = date
                 ),
@@ -334,7 +322,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Марина",
                     lastName = "Васина",
                     patronymic = "Васильевна",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "фасовщица",
                     date = date
                 ),
@@ -343,7 +331,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Александр",
                     lastName = "Александрин",
                     patronymic = "Александрович",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "грузчик",
                     date = date
                 ),
@@ -352,7 +340,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Дмитрий",
                     lastName = "Дмитров",
                     patronymic = "Дмитриевич",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "грузчик",
                     date = date
                 ),
@@ -361,7 +349,7 @@ class BrigadeApiImpl : BrigadeApi {
                     firstName = "Михаил",
                     lastName = "Мишин",
                     patronymic = "Михайлович",
-                    status = "Неизвестно",
+                    status = "На смене",
                     position = "разнорабочий",
                     date = date
                 ),

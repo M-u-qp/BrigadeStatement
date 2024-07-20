@@ -53,44 +53,50 @@ fun CardEmployee(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = PaddingExtraSmall8, vertical = PaddingSmall6),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
-                Text(
-                    text = "$firstName $lastName",
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontSize = Dimens.FontSizeLarge3,
-                        fontWeight = FontWeight.Medium,
-                        color = colorResource(id = R.color.black)
-                    )
-                )
-
-                Text(
-                    text = position,
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontSize = Dimens.FontSizeLarge1,
-                        color = colorResource(
-                            id = R.color.gray
+            Row(modifier = Modifier.weight(0.7f)) {
+                Column {
+                    Text(
+                        text = "$firstName $lastName",
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontSize = Dimens.FontSizeLarge3,
+                            fontWeight = FontWeight.Medium,
+                            color = colorResource(id = R.color.black)
                         )
                     )
-                )
-            }
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Icon(
-                    painter = painterResource(id = icon),
-                    contentDescription = null,
-                    tint = colorResource(id = containerBorderColor)
-                )
-
-                Text(
-                    text = status,
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontSize = Dimens.FontSizeLarge1,
-                        color = colorResource(id = containerBorderColor)
+                    Text(
+                        text = position,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontSize = Dimens.FontSizeLarge1,
+                            color = colorResource(
+                                id = R.color.gray
+                            )
+                        )
                     )
-                )
+                }
             }
+
+            Row(modifier = Modifier.weight(0.3f)) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Icon(
+                        painter = painterResource(id = icon),
+                        contentDescription = null,
+                        tint = colorResource(id = containerBorderColor)
+                    )
+
+                    Text(
+                        text = status,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontSize = Dimens.FontSizeLarge1,
+                            color = colorResource(id = containerBorderColor)
+                        )
+                    )
+                }
+            }
+
         }
     }
 }

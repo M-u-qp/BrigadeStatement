@@ -38,13 +38,15 @@ fun getColorOrIcon(value: String, id: Int): Int {
                         StatusRed.DISEASE.value -> R.drawable.ic_disease
                         StatusRed.VACATION.value -> R.drawable.ic_vacation
                         StatusRed.HOLIDAY.value -> R.drawable.ic_holiday
+                        StatusRed.ADMINISTRATIVE.value -> R.drawable.ic_administrative
+                        StatusRed.WITHOUT_CAUSE.value -> R.drawable.ic_without_reason
                         else -> 0
                     }
                 }
                 else -> 0
             }
         }
-        in StatusGray.entries.map { it.value } -> {
+        else -> {
             when(id) {
                 0 -> R.color.gray_card
                 1 -> R.color.gray_border
@@ -57,7 +59,6 @@ fun getColorOrIcon(value: String, id: Int): Int {
                 else -> 0
             }
         }
-       else -> 0
    }
     return result
 }

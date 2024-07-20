@@ -4,7 +4,9 @@ enum class StatusRed(val value: String) {
     WEEKEND(value = "Выходной"),
     DISEASE(value = "Больничный"),
     VACATION(value = "Отпуск"),
-    HOLIDAY(value = "Праздник")
+    HOLIDAY(value = "Праздник"),
+    ADMINISTRATIVE(value = "Административный"),
+    WITHOUT_CAUSE(value = "Без уважительной причины")
 }
 
 enum class StatusGreen(val value: String) {

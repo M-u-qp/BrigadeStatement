@@ -117,7 +117,7 @@ fun NavGraph(
                     val viewModel: StatementViewModel = hiltViewModel()
                     val state = viewModel.state.collectAsState().value
                     if (navController.previousBackStackEntry?.destination?.route == Route.StatementFilterScreen.route) {
-                        navController.currentBackStackEntry?.savedStateHandle?.get<FilterData?>("filterData")
+                        navController.previousBackStackEntry?.savedStateHandle?.get<FilterData?>("filterData")
                             ?.let { filterData ->
                                 StatementScreen(
                                     viewModel = viewModel,
