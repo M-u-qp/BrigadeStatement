@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.brigadestatement.domain.model.Employee
 import com.example.brigadestatement.domain.usecases.brigade.BrigadeUseCases
 import com.example.brigadestatement.domain.utils.Resource
+import com.example.brigadestatement.ui.common.StatusGreen
+import com.example.brigadestatement.ui.common.StatusRed
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,6 +26,7 @@ class StatementFilterViewModel @Inject constructor(
 
     init {
         getEmployees()
+        getAllStatus()
     }
 
     private fun getEmployees() {
@@ -50,6 +53,13 @@ class StatementFilterViewModel @Inject constructor(
         }
     }
 
+    private fun getAllStatus() {
+        val statusList: MutableList<String> = mutableListOf()
+        statusList.addAll(StatusGreen.entries.map { it.value })
+        statusList.addAll(StatusRed.entries.map { it.value })
+        _state.value = _state.value.copy(allStatus = statusList)
+    }
+
     fun updateVisibleDialogEmployees(show: Boolean) {
         _state.value = _state.value.copy(
             showDialogEmployees = show
@@ -68,7 +78,7 @@ class StatementFilterViewModel @Inject constructor(
         )
     }
 
-    fun updateSelectedEmployees(employees: List<Employee>) {
+    fun updateSelectedEmployees(employees: List<String>) {
         _state.value = _state.value.copy(selectEmployees = employees)
     }
 
@@ -93,5 +103,13 @@ class StatementFilterViewModel @Inject constructor(
         val date2 = Instant.ofEpochMilli(state.value.dateRange.last)
             .atZone(ZoneId.systemDefault()).toLocalDate().format(formatter)
         _state.value = _state.value.copy(selectedDates = "$date1 - $date2")
+    }
+
+    fun updateSelectedStatus(selectedStatus: List<String>) {
+        _state.value = _state.value.copy(selectStatus = selectedStatus)
+    }
+
+    fun updateFilterData() {
+
     }
 }

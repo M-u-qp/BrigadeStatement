@@ -21,6 +21,8 @@
     <string name="Dates_for_finding">Выберите даты для поиска</string>
     <string name="Status_for_finding">Выберите статусы для поиска</string>
     <string name="Select_all">Выбрать всех</string>
+    <string name="Select_date_from">Выберите дату \"ОТ\"</string>
+    <string name="Select_date_to">Выберите дату \"ДО\"</string>
     
     //EmployeesScreen
 

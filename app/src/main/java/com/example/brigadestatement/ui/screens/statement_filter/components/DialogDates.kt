@@ -63,7 +63,7 @@ fun DialogDates(
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
-                                        text = "Выберите дату \"ОТ\"",
+                                        text = stringResource(id = R.string.Select_date_from),
                                         style = MaterialTheme.typography.bodyMedium.copy(
                                             fontWeight = FontWeight.Medium,
                                             fontSize = Dimens.FontSizeLarge1,
@@ -73,7 +73,7 @@ fun DialogDates(
                                 }
                             }
                         )
-                        
+
                         HorizontalDivider()
                         Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall8))
                         HorizontalDivider()
@@ -89,7 +89,7 @@ fun DialogDates(
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
-                                        text = "Выберите дату \"ДО\"",
+                                        text = stringResource(id = R.string.Select_date_to),
                                         style = MaterialTheme.typography.bodyMedium.copy(
                                             fontWeight = FontWeight.Medium,
                                             fontSize = Dimens.FontSizeLarge1,

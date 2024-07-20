@@ -7,11 +7,16 @@ data class StatementFilterState(
     val errorEmployees: String? = null,
 
     val selectStatus: List<String> = emptyList(),
-    val selectEmployees: List<Employee> = emptyList(),
+    val selectEmployees: List<String> = emptyList(),
     val selectedDates: String = "",
     val dateRange: LongRange = 0L..0L,
+    val allStatus: List<String> = emptyList(),
 
     val showDialogDates: Boolean = false,
     val showDialogEmployees: Boolean = false,
     val showDialogStatus: Boolean = false,
+)
+
+data class FilterData(
+    val selectedEmployees: List<Employee>
 )

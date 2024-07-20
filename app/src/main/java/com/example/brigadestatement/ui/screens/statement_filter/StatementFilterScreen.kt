@@ -20,6 +20,7 @@ import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.NavigateUpBar
 import com.example.brigadestatement.ui.screens.statement_filter.components.DialogDates
 import com.example.brigadestatement.ui.screens.statement_filter.components.DialogEmployees
+import com.example.brigadestatement.ui.screens.statement_filter.components.DialogStatus
 import com.example.brigadestatement.ui.screens.statement_filter.components.FilterElementToSelect
 
 @Composable
@@ -35,6 +36,9 @@ fun StatementFilterScreen(
     }
     if (state.showDialogDates) {
         DialogDates(viewModel = viewModel, state = state)
+    }
+    if (state.showDialogStatus) {
+        DialogStatus(viewModel = viewModel, state = state)
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -53,7 +57,7 @@ fun StatementFilterScreen(
             val selectedEmployees = if (state.selectEmployees.isEmpty()) {
                 stringResource(id = R.string.Employees_for_finding)
             } else {
-                state.selectEmployees.joinToString (", "){ "${it.firstName} ${it.lastName}" }
+                state.selectEmployees.joinToString (", "){ it }
             }
 
             FilterElementToSelect(
@@ -83,10 +87,15 @@ fun StatementFilterScreen(
             HorizontalDivider()
             Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 
+            val selectedStatus = if (state.selectStatus.isEmpty()){
+                stringResource(id = R.string.Status_for_finding)
+            } else {
+                state.selectStatus.joinToString(", ") { it }
+            }
             FilterElementToSelect(
                 modifier = Modifier.padding(horizontal = PaddingMedium4),
                 nameFilter = stringResource(id = R.string.Selected_status),
-                selectedFilters = stringResource(id = R.string.Status_for_finding),
+                selectedFilters = selectedStatus,
                 onClick = { viewModel.updateVisibleDialogStatus(true) }
             )
 

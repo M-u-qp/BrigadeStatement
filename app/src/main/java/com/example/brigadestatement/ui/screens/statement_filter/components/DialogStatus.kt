@@ -28,25 +28,18 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.Dimens
-import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall10
-import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall8
-import com.example.brigadestatement.ui.Dimens.PaddingLarge10
-import com.example.brigadestatement.ui.Dimens.PaddingMedium4
-import com.example.brigadestatement.ui.Dimens.PaddingMedium6
-import com.example.brigadestatement.ui.Dimens.PaddingSmall2
 import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.Searching
 import com.example.brigadestatement.ui.screens.statement_filter.StatementFilterState
 import com.example.brigadestatement.ui.screens.statement_filter.StatementFilterViewModel
 
 @Composable
-fun DialogEmployees(
+fun DialogStatus(
     viewModel: StatementFilterViewModel,
     state: StatementFilterState,
 ) {
-
     val searchText = remember { mutableStateOf("") }
-    val selectedEmployees = remember { mutableStateListOf<String>() }
+    val selectedStatus = remember { mutableStateListOf<String>() }
 
     Dialog(
         onDismissRequest = {
@@ -57,27 +50,26 @@ fun DialogEmployees(
     ) {
         Box {
             Card(
-                modifier = Modifier.padding(PaddingExtraSmall10),
+                modifier = Modifier.padding(Dimens.PaddingExtraSmall10),
                 shape = MaterialTheme.shapes.medium
             ) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = PaddingExtraSmall10),
-                    verticalArrangement = Arrangement.spacedBy(Dimens.PaddingExtraSmall6)
+                        .padding(top = Dimens.PaddingExtraSmall10)
                 ) {
                     item {
                         Searching(
-                            modifier = Modifier.padding(horizontal = PaddingMedium4),
+                            modifier = Modifier.padding(horizontal = Dimens.PaddingMedium4),
                             searchText = searchText
                         )
-                        Spacer(modifier = Modifier.height(PaddingMedium6))
+                        Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 
                         if (searchText.value.isEmpty()) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = PaddingMedium4),
+                                    .padding(horizontal = Dimens.PaddingMedium4),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
@@ -90,20 +82,18 @@ fun DialogEmployees(
                                     )
                                 )
                                 Checkbox(
-                                    checked = selectedEmployees.size == state.allEmployees.size,
+                                    checked = selectedStatus.size == state.allStatus.size,
                                     onCheckedChange = { isChecked ->
                                         if (isChecked) {
-                                            state.allEmployees.forEach { employee ->
-                                                val fcs = "${employee.firstName} ${employee.lastName}"
-                                                if (!selectedEmployees.contains(fcs)) {
-                                                    selectedEmployees.add(fcs)
+                                            state.allStatus.forEach { status ->
+                                                if (!selectedStatus.contains(status)) {
+                                                    selectedStatus.add(status)
                                                 }
                                             }
                                         } else {
-                                            state.allEmployees.forEach { employee ->
-                                                val fcs = "${employee.firstName} ${employee.lastName}"
-                                                if (selectedEmployees.contains(fcs)) {
-                                                    selectedEmployees.remove(fcs)
+                                            state.allStatus.forEach { status ->
+                                                if (selectedStatus.contains(status)) {
+                                                    selectedStatus.remove(status)
                                                 }
                                             }
                                         }
@@ -114,33 +104,31 @@ fun DialogEmployees(
 
 
 
-                        Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                        Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall8))
                         HorizontalDivider()
-                        Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                        Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall8))
                     }
-
                     //Фильтруем список при введеных символах в поисковик
-                    val filteredEmployees = if (searchText.value.isNotEmpty()) {
-                        state.allEmployees.filter { employee ->
-                            employee.lastName.startsWith(
+                    val filteredStatus = if (searchText.value.isNotEmpty()) {
+                        state.allStatus.filter { status ->
+                            status.startsWith(
                                 prefix = searchText.value,
                                 ignoreCase = true
                             )
                         }
                     } else {
-                        state.allEmployees
+                        state.allStatus
                     }
-                    items(filteredEmployees) { employee ->
-                        val fcs = "${employee.firstName} ${employee.lastName}"
+                    items(filteredStatus) { status ->
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = PaddingMedium4),
+                                .padding(horizontal = Dimens.PaddingMedium4),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = "${employee.firstName} ${employee.lastName}",
+                                text = status,
                                 style = MaterialTheme.typography.bodyMedium.copy(
                                     fontSize = Dimens.FontSizeLarge3,
                                     fontWeight = FontWeight.Medium,
@@ -148,40 +136,40 @@ fun DialogEmployees(
                                 )
                             )
                             Checkbox(
-                                checked = selectedEmployees.contains(fcs),
+                                checked = selectedStatus.contains(status),
                                 onCheckedChange = { isChecked ->
                                     if (isChecked) {
-                                        selectedEmployees.add(fcs)
+                                        selectedStatus.add(status)
                                     } else {
-                                        selectedEmployees.remove(fcs)
+                                        selectedStatus.remove(status)
                                     }
                                 }
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                        Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall8))
                         HorizontalDivider()
-                        Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                        Spacer(modifier = Modifier.height(Dimens.PaddingExtraSmall8))
                     }
 
                     item {
-                        Spacer(modifier = Modifier.height(PaddingLarge10))
+                        Spacer(modifier = Modifier.height(Dimens.PaddingLarge10))
                     }
                 }
             }
             Column(
                 modifier = Modifier
-                    .padding(horizontal = PaddingMedium4)
+                    .padding(horizontal = Dimens.PaddingMedium4)
                     .align(Alignment.BottomCenter)
             ) {
                 JustButton(
                     onClick = {
-                        viewModel.updateSelectedEmployees(selectedEmployees.toList())
-                        viewModel.updateVisibleDialogEmployees(false)
+                        viewModel.updateSelectedStatus(selectedStatus = selectedStatus)
+                        viewModel.updateVisibleDialogStatus(false)
                     },
                     text = stringResource(id = R.string.ApplyFilters)
                 )
-                Spacer(modifier = Modifier.height(PaddingSmall2))
+                Spacer(modifier = Modifier.height(Dimens.PaddingSmall2))
             }
         }
     }
