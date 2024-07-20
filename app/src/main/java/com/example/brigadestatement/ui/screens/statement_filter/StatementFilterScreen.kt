@@ -18,6 +18,7 @@ import com.example.brigadestatement.ui.Dimens
 import com.example.brigadestatement.ui.Dimens.PaddingMedium4
 import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.NavigateUpBar
+import com.example.brigadestatement.ui.screens.statement_filter.components.DialogDates
 import com.example.brigadestatement.ui.screens.statement_filter.components.DialogEmployees
 import com.example.brigadestatement.ui.screens.statement_filter.components.FilterElementToSelect
 
@@ -31,6 +32,9 @@ fun StatementFilterScreen(
 
     if (state.showDialogEmployees) {
         DialogEmployees(viewModel = viewModel, state = state)
+    }
+    if (state.showDialogDates) {
+        DialogDates(viewModel = viewModel, state = state)
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -63,10 +67,15 @@ fun StatementFilterScreen(
             HorizontalDivider()
             Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 
+            val selectedDates = if (state.dateRange == 0L..0L) {
+                stringResource(id = R.string.Dates_for_finding)
+            } else {
+                state.selectedDates
+            }
             FilterElementToSelect(
                 modifier = Modifier.padding(horizontal = PaddingMedium4),
                 nameFilter = stringResource(id = R.string.Selected_dates),
-                selectedFilters = stringResource(id = R.string.Dates_for_finding),
+                selectedFilters = selectedDates,
                 onClick = { viewModel.updateVisibleDialogDates(true) }
             )
 

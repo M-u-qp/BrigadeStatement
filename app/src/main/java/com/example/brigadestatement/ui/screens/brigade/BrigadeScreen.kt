@@ -62,7 +62,7 @@ fun BrigadeScreen(
         viewModel.getBrigadeEmployees(currentDate())
     }
 
-    if (state.showDialogStatus) {
+    if (state.showDialogGoodOrBadStatus) {
         DialogStatus(
             viewModel = viewModel,
             goodOrBadStatus = state.goodOrBadStatus

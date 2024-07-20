@@ -34,6 +34,7 @@ import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall8
 import com.example.brigadestatement.ui.Dimens.PaddingLarge10
 import com.example.brigadestatement.ui.Dimens.PaddingMedium4
 import com.example.brigadestatement.ui.Dimens.PaddingMedium6
+import com.example.brigadestatement.ui.Dimens.PaddingSmall2
 import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.Searching
 import com.example.brigadestatement.ui.screens.statement_filter.StatementFilterState
@@ -57,7 +58,7 @@ fun DialogEmployees(
     ) {
         Box {
             Card(
-                modifier = Modifier.padding(horizontal = PaddingExtraSmall10),
+                modifier = Modifier.padding(PaddingExtraSmall10),
                 shape = MaterialTheme.shapes.medium
             ) {
                 LazyColumn(
@@ -173,12 +174,12 @@ fun DialogEmployees(
             ) {
                 JustButton(
                     onClick = {
-                        viewModel.updateDataSelectedEmployees(selectedEmployees.toList())
+                        viewModel.updateSelectedEmployees(selectedEmployees.toList())
                         viewModel.updateVisibleDialogEmployees(false)
                     },
                     text = stringResource(id = R.string.ApplyFilters)
                 )
-                Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                Spacer(modifier = Modifier.height(PaddingSmall2))
             }
         }
     }

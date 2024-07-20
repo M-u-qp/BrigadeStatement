@@ -77,7 +77,7 @@ class BrigadeViewModel @Inject constructor(
     }
 
     fun updateVisibleDialogStatus(show: Boolean) {
-        _state.value = _state.value.copy(showDialogStatus = show)
+        _state.value = _state.value.copy(showDialogGoodOrBadStatus = show)
     }
 
     fun updateCurrentIndex(index: Int) {
