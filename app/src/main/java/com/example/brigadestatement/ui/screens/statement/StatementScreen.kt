@@ -26,9 +26,11 @@ import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.Dimens
 import com.example.brigadestatement.ui.Dimens.FontSizeLarge5
 import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall8
+import com.example.brigadestatement.ui.Dimens.PaddingLarge10
 import com.example.brigadestatement.ui.common.JustButton
-import com.example.brigadestatement.ui.common.currentDate
 import com.example.brigadestatement.ui.screens.statement_filter.FilterData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @Composable
 fun StatementScreen(
@@ -37,15 +39,16 @@ fun StatementScreen(
     navigateToFilter: () -> Unit,
     filterData: FilterData?
 ) {
+
     LaunchedEffect(key1 = true) {
-        viewModel.getBrigadeEmployees(currentDate())
+        withContext(Dispatchers.IO) {
+            viewModel.getAllBrigadeEmployees()
+        }
     }
 
     LaunchedEffect(state.allBrigades) {
         if (state.allBrigades.isNotEmpty()) {
-            filterData?.let {
-                viewModel.getFilteredBrigades(filterData = filterData)
-            }
+            viewModel.getFilteredBrigades(filterData = filterData)
         }
     }
 
@@ -75,7 +78,6 @@ fun StatementScreen(
 
         Box {
             LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(Dimens.PaddingExtraSmall6)
             ) {
                 if (state.filteredBrigades.isNotEmpty()) {
@@ -87,7 +89,7 @@ fun StatementScreen(
                             Text(
                                 modifier = Modifier
                                     .align(Alignment.Center),
-                                text = "${state.currentBrigade.first()?.date}",
+                                text = "${state.filteredBrigades.first()?.date}",
                                 style = MaterialTheme.typography.labelMedium.copy(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = FontSizeLarge5,
@@ -131,67 +133,16 @@ fun StatementScreen(
                             Spacer(modifier = Modifier.height(PaddingExtraSmall8))
                         }
                     }
-                } else if (state.currentBrigade.isNotEmpty() && !state.filteredIsEmpty) {
-                    item {
-                        Box(
-                            modifier = Modifier.fillMaxWidth(),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                modifier = Modifier
-                                    .align(Alignment.Center),
-                                text = "${state.currentBrigade.first()?.date}",
-                                style = MaterialTheme.typography.labelMedium.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = FontSizeLarge5,
-                                    color = colorResource(id = R.color.black)
-                                ),
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
-                    }
-                    items(state.currentBrigade) { employee ->
-                        employee?.let {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = Dimens.PaddingMedium4),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Row(modifier = Modifier.weight(0.7f)) {
-                                    Text(
-                                        text = "${employee.firstName} ${employee.lastName}",
-                                        style = MaterialTheme.typography.bodyMedium.copy(
-                                            fontSize = Dimens.FontSizeLarge3,
-                                            fontWeight = FontWeight.Medium,
-                                            color = colorResource(id = R.color.black)
-                                        )
-                                    )
-                                }
-
-                                Row(modifier = Modifier.weight(0.3f)) {
-                                    Text(
-                                        text = employee.status,
-                                        style = MaterialTheme.typography.bodyMedium.copy(
-                                            fontSize = Dimens.FontSizeLarge1
-                                        )
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.height(PaddingExtraSmall8))
-                            HorizontalDivider()
-                            Spacer(modifier = Modifier.height(PaddingExtraSmall8))
-                        }
-                    }
                 } else {
                     item {
                         Box(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier.fillMaxSize().padding(top = PaddingLarge10),
                             contentAlignment = Alignment.Center
                         ) {
+                            val notFound = stringResource(id = R.string.Nothing_was_found)
+                            val dateMustBe = stringResource(id = R.string.Date_must_be_selected)
                             Text(
-                                text = "Ничего не найдено",
+                                text = "$notFound \n($dateMustBe)",
                                 style = MaterialTheme.typography.bodyMedium.copy(
                                     fontSize = Dimens.FontSizeLarge1
                                 )

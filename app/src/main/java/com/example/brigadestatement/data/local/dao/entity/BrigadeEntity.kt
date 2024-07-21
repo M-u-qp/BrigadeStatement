@@ -12,5 +12,6 @@ data class BrigadeEntity(
     val patronymic: String,
     val status: String,
     val position: String,
-    val date: String
+    val date: String,
+    val dateMs: Long
 )

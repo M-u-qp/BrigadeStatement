@@ -13,6 +13,7 @@ fun BrigadeEmployee.toBrigadeEntity(): BrigadeEntity {
         status = status,
         position = position,
         date = date,
+        dateMs = dateMs
     )
 }
 
@@ -26,5 +27,6 @@ fun BrigadeEntity.toBrigadeEmployee(): BrigadeEmployee {
         status = status,
         position = position,
         date = date,
+        dateMs = dateMs
     )
 }

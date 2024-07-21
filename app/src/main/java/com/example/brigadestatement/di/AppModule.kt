@@ -64,11 +64,11 @@ object AppModule {
     fun provideBrigadeDatabase(
         application: Application
     ): BrigadeDatabase {
-        return Room.databaseBuilder(
-//        return Room.inMemoryDatabaseBuilder(
+//        return Room.databaseBuilder(
+        return Room.inMemoryDatabaseBuilder(
             context = application,
             klass = BrigadeDatabase::class.java,
-            name = NAME_DATABASE
+//            name = NAME_DATABASE
         )
             .fallbackToDestructiveMigration()
             .build()

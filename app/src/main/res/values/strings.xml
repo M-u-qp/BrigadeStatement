@@ -10,7 +10,9 @@
     
     //StatementScreen
     <string name="Search_by_filters">Поиск по фильтрам</string>
-    
+    <string name="Nothing_was_found">Ничего не найдено</string>
+    <string name="Date_must_be_selected">Дата должна быть выбрана обязательно!</string>
+
     //StatementFilterScreen
     <string name="ApplyFilters">Применить</string>
     <string name="Search_parameters">Параметры поиска</string>

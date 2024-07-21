@@ -22,6 +22,7 @@ data class StatementFilterState(
 @Parcelize
 data class FilterData(
     val selectedEmployees: List<String>,
-    val selectedDates: String,
+    val selectedDateStart: Long,
+    val selectedDateEnd: Long,
     val selectedStatus: List<String>
 ): Parcelable

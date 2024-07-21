@@ -9,4 +9,5 @@ data class BrigadeEmployee(
     val status: String,
     val position: String,
     val date: String,
+    val dateMs: Long
 )

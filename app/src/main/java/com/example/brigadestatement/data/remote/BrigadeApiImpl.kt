@@ -4,6 +4,7 @@ import com.example.brigadestatement.data.remote.dto.BrigadeResponse
 import com.example.brigadestatement.domain.model.Address
 import com.example.brigadestatement.domain.model.BrigadeEmployee
 import com.example.brigadestatement.domain.model.Employee
+import com.example.brigadestatement.ui.common.currentDateMs
 import com.example.brigadestatement.ui.common.currentDate
 
 class BrigadeApiImpl : BrigadeApi {
@@ -242,6 +243,7 @@ class BrigadeApiImpl : BrigadeApi {
     }
     override suspend fun getListBrigade(): BrigadeResponse {
         val date = currentDate()
+        val dateMs = currentDateMs()
 
         return BrigadeResponse(
             listOf(
@@ -252,7 +254,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Иванович",
                     status = "На смене",
                     position = "слесарь",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234502",
@@ -261,7 +264,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Петрович",
                     status = "На смене",
                     position = "водитель",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234503",
@@ -270,7 +274,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Игоревич",
                     status = "На смене",
                     position = "рабочий",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234504",
@@ -279,7 +284,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Ивановна",
                     status = "На смене",
                     position = "швея",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234505",
@@ -288,7 +294,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Петровна",
                     status = "На смене",
                     position = "фельдшер",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234506",
@@ -297,7 +304,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Сидорович",
                     status = "На смене",
                     position = "технолог",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234507",
@@ -306,7 +314,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Сидоровна",
                     status = "На смене",
                     position = "технолог",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234508",
@@ -315,7 +324,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Васильевич",
                     status = "На смене",
                     position = "слесарь",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234509",
@@ -324,7 +334,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Васильевна",
                     status = "На смене",
                     position = "фасовщица",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234510",
@@ -333,7 +344,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Александрович",
                     status = "На смене",
                     position = "грузчик",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234511",
@@ -342,7 +354,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Дмитриевич",
                     status = "На смене",
                     position = "грузчик",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
                 BrigadeEmployee(
                     plotNumber = "1234512",
@@ -351,7 +364,8 @@ class BrigadeApiImpl : BrigadeApi {
                     patronymic = "Михайлович",
                     status = "На смене",
                     position = "разнорабочий",
-                    date = date
+                    date = date,
+                    dateMs = dateMs
                 ),
             )
         )

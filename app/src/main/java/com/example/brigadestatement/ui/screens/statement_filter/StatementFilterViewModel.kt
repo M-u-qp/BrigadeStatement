@@ -111,7 +111,8 @@ class StatementFilterViewModel @Inject constructor(
     fun updateFilterData(): FilterData {
         return FilterData(
             selectedEmployees = state.value.selectEmployees,
-            selectedDates = state.value.selectedDates,
+            selectedDateStart = state.value.dateRange.first,
+            selectedDateEnd = state.value.dateRange.last,
             selectedStatus = state.value.selectStatus
         )
     }
