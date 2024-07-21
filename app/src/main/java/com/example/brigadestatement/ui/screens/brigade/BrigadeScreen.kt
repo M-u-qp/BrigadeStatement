@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -57,6 +59,7 @@ fun BrigadeScreen(
 ) {
     val density = LocalDensity.current
     val scope = rememberCoroutineScope()
+    val lazyScrollState = rememberLazyListState()
 
     LaunchedEffect(key1 = true) {
         viewModel.getBrigadeEmployees(currentDate())
@@ -69,25 +72,28 @@ fun BrigadeScreen(
         )
     }
 
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = PaddingMedium4)
             .padding(horizontal = PaddingMedium4)
     ) {
-        Text(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = stringResource(id = R.string.My_brigade),
-            style = MaterialTheme.typography.displayMedium.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = FontSizeExtraLarge5
+        if (changeLazyScrollState(lazyScrollState)) {
+            Text(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                text = stringResource(id = R.string.My_brigade),
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = FontSizeExtraLarge5
+                )
             )
-        )
 
-        Spacer(modifier = Modifier.height(PaddingSmall6))
-
+            Spacer(modifier = Modifier.height(PaddingSmall6))
+        }
         Box {
             LazyColumn(
+                state = lazyScrollState,
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(PaddingExtraSmall6)
             ) {
@@ -177,3 +183,9 @@ fun BrigadeScreen(
         }
     }
 }
+
+
+fun changeLazyScrollState(lazyScrollState: LazyListState): Boolean {
+   return lazyScrollState.firstVisibleItemScrollOffset <= 0
+}
+

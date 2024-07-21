@@ -139,10 +139,8 @@ fun StatementScreen(
                             modifier = Modifier.fillMaxSize().padding(top = PaddingLarge10),
                             contentAlignment = Alignment.Center
                         ) {
-                            val notFound = stringResource(id = R.string.Nothing_was_found)
-                            val dateMustBe = stringResource(id = R.string.Date_must_be_selected)
                             Text(
-                                text = "$notFound \n($dateMustBe)",
+                                text = stringResource(id = R.string.Nothing_was_found),
                                 style = MaterialTheme.typography.bodyMedium.copy(
                                     fontSize = Dimens.FontSizeLarge1
                                 )

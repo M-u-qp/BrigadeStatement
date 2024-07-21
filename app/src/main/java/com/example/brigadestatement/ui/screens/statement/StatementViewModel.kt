@@ -2,7 +2,6 @@ package com.example.brigadestatement.ui.screens.statement
 
 import androidx.lifecycle.ViewModel
 import com.example.brigadestatement.domain.usecases.brigade.BrigadeUseCases
-import com.example.brigadestatement.ui.common.currentDate
 import com.example.brigadestatement.ui.common.roundToDay
 import com.example.brigadestatement.ui.screens.statement_filter.FilterData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,58 +30,12 @@ class StatementViewModel @Inject constructor(
             val fcs = "${brigadeEmployee?.firstName} ${brigadeEmployee?.lastName}"
             when {
                 filterData != null -> {
-                    when {
-                        filterData.selectedStatus.isNotEmpty() && filterData.selectedEmployees.isNotEmpty() &&
-                                filterData.selectedDateStart != 0L && filterData.selectedDateEnd != 0L
-                        -> {
-
-                            val startDate = roundToDay(filterData.selectedDateStart)
-                            val endDate = roundToDay(filterData.selectedDateEnd)
-                            val dateMs = brigadeEmployee?.let { roundToDay(it.dateMs) }
-                            brigadeEmployee?.status in filterData.selectedStatus &&
-                                    fcs in filterData.selectedEmployees &&
-                                    dateMs in startDate..endDate
-                        }
-
-                        filterData.selectedEmployees.isNotEmpty() &&
-                                filterData.selectedDateStart != 0L && filterData.selectedDateEnd != 0L -> {
-
-                            val startDate = roundToDay(filterData.selectedDateStart)
-                            val endDate = roundToDay(filterData.selectedDateEnd)
-                            val dateMs = brigadeEmployee?.let { roundToDay(it.dateMs) }
-                            fcs in filterData.selectedEmployees &&
-                                    dateMs in startDate..endDate
-                        }
-
-                        filterData.selectedStatus.isNotEmpty() &&
-                                filterData.selectedDateStart != 0L && filterData.selectedDateEnd != 0L -> {
-
-                            val startDate = roundToDay(filterData.selectedDateStart)
-                            val endDate = roundToDay(filterData.selectedDateEnd)
-                            val dateMs = brigadeEmployee?.let { roundToDay(it.dateMs) }
-                            brigadeEmployee?.status in filterData.selectedStatus &&
-                                    dateMs in startDate..endDate
-                        }
-
-                        filterData.selectedDateStart != 0L && filterData.selectedDateEnd != 0L -> {
-
-                            val startDate = roundToDay(filterData.selectedDateStart)
-                            val endDate = roundToDay(filterData.selectedDateEnd)
-                            val dateMs = brigadeEmployee?.let { roundToDay(it.dateMs) }
-                            dateMs in startDate..endDate
-                        }
-                        filterData.selectedEmployees.isNotEmpty() && filterData.selectedStatus.isNotEmpty() -> {
-                            false
-                        }
-                        filterData.selectedEmployees.isNotEmpty() -> {
-                            false
-                        }
-                        filterData.selectedStatus.isNotEmpty() -> {
-                            false
-                        }
-
-                        else -> true
-                    }
+                    val startDate = roundToDay(filterData.selectedDateStart)
+                    val endDate = roundToDay(filterData.selectedDateEnd)
+                    val dateMs = brigadeEmployee?.let { roundToDay(it.dateMs) }
+                    (filterData.selectedStatus.isEmpty() || brigadeEmployee?.status in filterData.selectedStatus) &&
+                            (filterData.selectedEmployees.isEmpty() || fcs in filterData.selectedEmployees) &&
+                            (filterData.selectedDateStart == 0L && filterData.selectedDateEnd == 0L || dateMs in startDate..endDate)
                 }
 
                 else -> true
