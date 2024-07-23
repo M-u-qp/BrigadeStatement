@@ -27,7 +27,8 @@ import com.example.brigadestatement.ui.Dimens.IconNormalSize
 @Composable
 fun Searching(
     modifier: Modifier = Modifier,
-    searchText: MutableState<String>
+    searchText: MutableState<String>,
+    hintText: String
 ) {
 
     val searchTextState by remember { mutableStateOf(searchText) }
@@ -51,7 +52,7 @@ fun Searching(
         },
         placeholder = {
             Text(
-                text = "Введите",
+                text = hintText,
                 style = MaterialTheme.typography.bodySmall.copy(
                     fontSize = FontSizeMedium4
                 ),

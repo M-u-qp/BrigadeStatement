@@ -61,7 +61,8 @@ fun DialogStatus(
                     item {
                         Searching(
                             modifier = Modifier.padding(horizontal = Dimens.PaddingMedium4),
-                            searchText = searchText
+                            searchText = searchText,
+                            hintText = stringResource(id = R.string.Enter_beginning_status)
                         )
                         Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
 

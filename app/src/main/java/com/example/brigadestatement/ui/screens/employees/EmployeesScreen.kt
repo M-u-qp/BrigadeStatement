@@ -16,6 +16,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -29,12 +31,15 @@ import com.example.brigadestatement.ui.Dimens.FontSizeLarge3
 import com.example.brigadestatement.ui.Dimens.PaddingExtraSmall8
 import com.example.brigadestatement.ui.Dimens.PaddingMedium4
 import com.example.brigadestatement.ui.Dimens.PaddingSmall2
+import com.example.brigadestatement.ui.common.Searching
 
 @Composable
 fun EmployeesScreen(
     state: EmployeesState,
     navigateToInfoEmployee: (Employee?) -> Unit
 ) {
+    val searchText = remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +59,26 @@ fun EmployeesScreen(
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(PaddingExtraSmall8)
         ) {
-            items(state.employees) { employee ->
+
+            item {
+                Searching(
+                    searchText = searchText,
+                    hintText = stringResource(id = R.string.Enter_beginning_last_name)
+                )
+                Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            }
+            //Фильтруем список при введеных символах в поисковик
+            val filteredEmployees = if (searchText.value.isNotEmpty()) {
+                state.employees.filter { employee ->
+                    employee?.lastName?.startsWith(
+                        prefix = searchText.value,
+                        ignoreCase = true
+                    ) ?: false
+                }
+            } else {
+                state.employees
+            }
+            items(filteredEmployees) { employee ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()

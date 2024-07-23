@@ -26,6 +26,8 @@
     <string name="Select_date_to">Выберите дату \"ДО\"</string>
     
     //EmployeesScreen
+    <string name="Enter_beginning_last_name">Введите начало фамилии сотрудника</string>
+    <string name="Enter_beginning_status">Введите начало статуса сотрудника</string>
 
     //InfoEmployeeScreen
     <string name="Profile_employee">Профиль сотрудника</string>

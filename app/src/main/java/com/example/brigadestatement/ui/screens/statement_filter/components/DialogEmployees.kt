@@ -69,7 +69,8 @@ fun DialogEmployees(
                     item {
                         Searching(
                             modifier = Modifier.padding(horizontal = PaddingMedium4),
-                            searchText = searchText
+                            searchText = searchText,
+                            hintText = stringResource(id = R.string.Enter_beginning_last_name)
                         )
                         Spacer(modifier = Modifier.height(PaddingMedium6))
 
