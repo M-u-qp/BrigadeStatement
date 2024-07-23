@@ -19,16 +19,21 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.example.brigadestatement.R
+import com.example.brigadestatement.domain.model.Employee
 import com.example.brigadestatement.ui.navigation.components.BottomNavigation
 import com.example.brigadestatement.ui.navigation.components.BottomNavigationItem
 import com.example.brigadestatement.ui.screens.brigade.BrigadeScreen
 import com.example.brigadestatement.ui.screens.brigade.BrigadeViewModel
 import com.example.brigadestatement.ui.screens.employees.EmployeesScreen
+import com.example.brigadestatement.ui.screens.employees.EmployeesViewModel
+import com.example.brigadestatement.ui.screens.info_employee.InfoEmployeeScreen
 import com.example.brigadestatement.ui.screens.statement.StatementScreen
 import com.example.brigadestatement.ui.screens.statement.StatementViewModel
 import com.example.brigadestatement.ui.screens.statement_filter.FilterData
 import com.example.brigadestatement.ui.screens.statement_filter.StatementFilterScreen
 import com.example.brigadestatement.ui.screens.statement_filter.StatementFilterViewModel
+import com.example.brigadestatement.ui.util.Constants.EMPLOYEE
+import com.example.brigadestatement.ui.util.Constants.FILTER_DATA
 
 @Composable
 fun NavGraph(
@@ -117,7 +122,9 @@ fun NavGraph(
                     val viewModel: StatementViewModel = hiltViewModel()
                     val state = viewModel.state.collectAsState().value
                     if (navController.previousBackStackEntry?.destination?.route == Route.StatementFilterScreen.route) {
-                        navController.previousBackStackEntry?.savedStateHandle?.get<FilterData?>("filterData")
+                        navController.previousBackStackEntry?.savedStateHandle?.get<FilterData?>(
+                            FILTER_DATA
+                        )
                             ?.let { filterData ->
                                 StatementScreen(
                                     viewModel = viewModel,
@@ -137,7 +144,17 @@ fun NavGraph(
 
                 }
                 composable(route = Route.EmployeesScreen.route) {
-                    EmployeesScreen()
+                    val viewModel: EmployeesViewModel = hiltViewModel()
+                    val state = viewModel.state.collectAsState().value
+                    EmployeesScreen(
+                        state = state,
+                        navigateToInfoEmployee = { employee ->
+                            navigateToInfoEmployee(
+                                navController = navController,
+                                employee = employee
+                            )
+                        }
+                    )
                 }
                 composable(route = Route.StatementFilterScreen.route) {
                     val viewModel: StatementFilterViewModel = hiltViewModel()
@@ -153,6 +170,15 @@ fun NavGraph(
                         },
                         navigateUp = { navController.navigateUp() }
                     )
+                }
+                composable(route = Route.InfoEmployeeScreen.route) {
+                    navController.previousBackStackEntry?.savedStateHandle?.get<Employee?>(EMPLOYEE)
+                        ?.let { employee ->
+                            InfoEmployeeScreen(
+                                employee = employee,
+                                navigateUp = { navController.navigateUp() }
+                            )
+                        }
                 }
             }
         }
@@ -172,6 +198,11 @@ private fun navigateToTab(navController: NavController, route: String) {
 }
 
 private fun navigateToStatement(navController: NavController, filterData: FilterData?) {
-    navController.currentBackStackEntry?.savedStateHandle?.set("filterData", filterData)
+    navController.currentBackStackEntry?.savedStateHandle?.set(FILTER_DATA, filterData)
     navController.navigate(route = Route.StatementScreen.route)
+}
+
+private fun navigateToInfoEmployee(navController: NavController, employee: Employee?) {
+    navController.currentBackStackEntry?.savedStateHandle?.set(EMPLOYEE, employee)
+    navController.navigate(route = Route.InfoEmployeeScreen.route)
 }

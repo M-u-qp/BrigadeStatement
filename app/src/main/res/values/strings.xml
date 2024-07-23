@@ -27,4 +27,7 @@
     
     //EmployeesScreen
 
+    //InfoEmployeeScreen
+    <string name="Profile_employee">Профиль сотрудника</string>
+
 </resources>

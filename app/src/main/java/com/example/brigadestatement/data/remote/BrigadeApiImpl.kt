@@ -28,7 +28,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 45,
                 division = "Мастерская",
                 employeeNumber = "R001",
-                phoneNumber = "+7(903)561-44-21"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234502",
@@ -47,7 +48,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 33,
                 division = "Гараж",
                 employeeNumber = "R002",
-                phoneNumber = "+7(947)754-34-42"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234503",
@@ -66,7 +68,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 22,
                 division = "Склад",
                 employeeNumber = "R003",
-                phoneNumber = "+7(924)525-66-21"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234504",
@@ -85,7 +88,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 43,
                 division = "Помещение1",
                 employeeNumber = "R004",
-                phoneNumber = "+7(923)421-55-55"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234505",
@@ -104,7 +108,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 39,
                 division = "МедКабинет",
                 employeeNumber = "R006",
-                phoneNumber = "+7(923)555-14-51"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234506",
@@ -123,7 +128,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 55,
                 division = "Административная3",
                 employeeNumber = "R006",
-                phoneNumber = "+7(903)642-51-12"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234507",
@@ -142,7 +148,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 53,
                 division = "Административная3",
                 employeeNumber = "R007",
-                phoneNumber = "+7(977)263-45-65"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234508",
@@ -161,7 +168,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 44,
                 division = "Мастерская",
                 employeeNumber = "R008",
-                phoneNumber = "+7(976)754-33-21"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234509",
@@ -180,7 +188,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 44,
                 division = "Помещение1",
                 employeeNumber = "R009",
-                phoneNumber = "+7(965)898-44-11"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234510",
@@ -199,7 +208,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 36,
                 division = "Склад",
                 employeeNumber = "R010",
-                phoneNumber = "+7(999)234-55-87"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234511",
@@ -218,7 +228,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 37,
                 division = "Склад",
                 employeeNumber = "R011",
-                phoneNumber = "+7(943)654-12-54"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             ),
             Employee(
                 plotNumber = "1234512",
@@ -237,7 +248,8 @@ class BrigadeApiImpl : BrigadeApi {
                 age = 29,
                 division = "Склад",
                 employeeNumber = "R012",
-                phoneNumber = "+7(953)643-43-65"
+                phoneNumber = "+7(999)999-99-99",
+                photo = null
             )
         )
     }

@@ -13,10 +13,11 @@ import com.example.brigadestatement.domain.usecases.brigade.DeleteEmployee
 import com.example.brigadestatement.domain.usecases.brigade.GetAllBrigadeEmployees
 import com.example.brigadestatement.domain.usecases.brigade.GetBrigade
 import com.example.brigadestatement.domain.usecases.brigade.GetBrigadeEmployees
-import com.example.brigadestatement.domain.usecases.brigade.GetEmployees
+import com.example.brigadestatement.domain.usecases.employees.GetEmployees
 import com.example.brigadestatement.domain.usecases.brigade.InsertBrigade
 import com.example.brigadestatement.domain.usecases.brigade.UpdateBrigadeEmployee
 import com.example.brigadestatement.domain.usecases.brigade.UpsertEmployee
+import com.example.brigadestatement.domain.usecases.employees.EmployeesUseCases
 import com.example.brigadestatement.ui.util.Constants.NAME_DATABASE
 import dagger.Module
 import dagger.Provides
@@ -40,7 +41,16 @@ object AppModule {
             getAllBrigadeEmployees = GetAllBrigadeEmployees(brigadeRepository),
             getBrigade = GetBrigade(brigadeRepository),
             getBrigadeEmployees = GetBrigadeEmployees(brigadeRepository),
-            insertBrigade = InsertBrigade(brigadeRepository),
+            insertBrigade = InsertBrigade(brigadeRepository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideEmployeesUseCases(
+        brigadeRepository: BrigadeRepository
+    ): EmployeesUseCases {
+        return EmployeesUseCases(
             getEmployees = GetEmployees(brigadeRepository)
         )
     }
@@ -64,11 +74,11 @@ object AppModule {
     fun provideBrigadeDatabase(
         application: Application
     ): BrigadeDatabase {
-//        return Room.databaseBuilder(
-        return Room.inMemoryDatabaseBuilder(
+        return Room.databaseBuilder(
+//        return Room.inMemoryDatabaseBuilder(
             context = application,
             klass = BrigadeDatabase::class.java,
-//            name = NAME_DATABASE
+            name = NAME_DATABASE
         )
             .fallbackToDestructiveMigration()
             .build()

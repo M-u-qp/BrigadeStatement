@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.brigadestatement.R
 import com.example.brigadestatement.ui.Dimens
 import com.example.brigadestatement.ui.Dimens.PaddingMedium4
+import com.example.brigadestatement.ui.Dimens.PaddingMedium6
 import com.example.brigadestatement.ui.common.JustButton
 import com.example.brigadestatement.ui.common.NavigateUpBar
 import com.example.brigadestatement.ui.screens.statement_filter.components.DialogDates
@@ -49,14 +50,16 @@ fun StatementFilterScreen(
         Column(modifier = Modifier.fillMaxWidth()) {
             val title = stringResource(id = R.string.Search_parameters)
             NavigateUpBar(
-                modifier = Modifier.padding(horizontal = PaddingMedium4),
+                modifier = Modifier
+                    .padding(top = PaddingMedium6)
+                    .padding(horizontal = PaddingMedium4),
                 navigateUp = navigateUp,
                 text = title
             )
 
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
             HorizontalDivider()
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
 
             val selectedEmployees = if (state.selectEmployees.isEmpty()) {
                 stringResource(id = R.string.Employees_for_finding)
@@ -71,9 +74,9 @@ fun StatementFilterScreen(
                 onClick = { viewModel.updateVisibleDialogEmployees(true) }
             )
 
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
             HorizontalDivider()
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
 
             val selectedDates = if (state.dateRange == 0L..0L) {
                 stringResource(id = R.string.Dates_for_finding)
@@ -87,9 +90,9 @@ fun StatementFilterScreen(
                 onClick = { viewModel.updateVisibleDialogDates(true) }
             )
 
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
             HorizontalDivider()
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
 
             val selectedStatus = if (state.selectStatus.isEmpty()){
                 stringResource(id = R.string.Status_for_finding)
@@ -103,9 +106,9 @@ fun StatementFilterScreen(
                 onClick = { viewModel.updateVisibleDialogStatus(true) }
             )
 
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
             HorizontalDivider()
-            Spacer(modifier = Modifier.height(Dimens.PaddingMedium6))
+            Spacer(modifier = Modifier.height(PaddingMedium6))
 
         }
         Column(

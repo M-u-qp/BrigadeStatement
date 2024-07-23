@@ -2,7 +2,7 @@ package com.example.brigadestatement.ui.screens.statement_filter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.brigadestatement.domain.usecases.brigade.BrigadeUseCases
+import com.example.brigadestatement.domain.usecases.employees.EmployeesUseCases
 import com.example.brigadestatement.domain.utils.Resource
 import com.example.brigadestatement.ui.common.StatusGreen
 import com.example.brigadestatement.ui.common.StatusRed
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StatementFilterViewModel @Inject constructor(
-    private val brigadeUseCases: BrigadeUseCases
+    private val employeesUseCases: EmployeesUseCases
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(StatementFilterState())
@@ -31,7 +31,7 @@ class StatementFilterViewModel @Inject constructor(
     private fun getEmployees() {
         viewModelScope.launch {
             if (state.value.allEmployees.isEmpty()) {
-                when (val employees = brigadeUseCases.getEmployees()) {
+                when (val employees = employeesUseCases.getEmployees()) {
                     is Resource.Success -> {
                         employees.data?.let {
                             _state.value = _state.value.copy(
