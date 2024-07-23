@@ -29,7 +29,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Мастерская",
                 employeeNumber = "R001",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234502",
@@ -49,7 +50,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Гараж",
                 employeeNumber = "R002",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234503",
@@ -69,7 +71,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Склад",
                 employeeNumber = "R003",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234504",
@@ -89,7 +92,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Помещение1",
                 employeeNumber = "R004",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234505",
@@ -109,7 +113,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "МедКабинет",
                 employeeNumber = "R006",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234506",
@@ -129,7 +134,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Административная3",
                 employeeNumber = "R006",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234507",
@@ -149,7 +155,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Административная3",
                 employeeNumber = "R007",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234508",
@@ -169,7 +176,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Мастерская",
                 employeeNumber = "R008",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234509",
@@ -189,7 +197,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Помещение1",
                 employeeNumber = "R009",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234510",
@@ -209,7 +218,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Склад",
                 employeeNumber = "R010",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234511",
@@ -229,7 +239,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Склад",
                 employeeNumber = "R011",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             ),
             Employee(
                 plotNumber = "1234512",
@@ -249,7 +260,8 @@ class BrigadeApiImpl : BrigadeApi {
                 division = "Склад",
                 employeeNumber = "R012",
                 phoneNumber = "+7(999)999-99-99",
-                photo = null
+                photo = null,
+                email = "email@email.com"
             )
         )
     }

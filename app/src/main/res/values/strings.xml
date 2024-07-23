@@ -29,5 +29,19 @@
 
     //InfoEmployeeScreen
     <string name="Profile_employee">Профиль сотрудника</string>
+    <string name="Position">Должность</string>
+    <string name="Address">Адрес</string>
+    <string name="Country">Страна</string>
+    <string name="City">Город</string>
+    <string name="Street">Улица</string>
+    <string name="Home">Дом</string>
+    <string name="Corpus">Корпус</string>
+    <string name="Apartment">Квартира</string>
+    <string name="Phone_number">Мобильный</string>
+    <string name="Email">E-mail</string>
+    <string name="Age">Возраст</string>
+    <string name="Employee_number">Личный номер сотрудника</string>
+    <string name="Plot_number">Номер участка</string>
+    <string name="Division">Подразделение</string>
 
 </resources>

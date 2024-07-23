@@ -16,7 +16,8 @@ data class Employee(
     val plotNumber: String?,
     val employeeNumber: String?,
     val phoneNumber: String?,
-    val photo: String?
+    val photo: String?,
+    val email: String?
 ): Parcelable
 
 @Parcelize
