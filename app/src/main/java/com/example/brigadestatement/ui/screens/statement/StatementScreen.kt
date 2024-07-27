@@ -46,6 +46,12 @@ fun StatementScreen(
         }
     }
 
+    LaunchedEffect(key1 = true) {
+        withContext(Dispatchers.IO) {
+            viewModel.getCurrentBrigade()
+        }
+    }
+
     LaunchedEffect(state.allBrigades) {
         if (state.allBrigades.isNotEmpty()) {
             viewModel.getFilteredBrigades(filterData = filterData)
@@ -80,63 +86,146 @@ fun StatementScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(Dimens.PaddingExtraSmall6)
             ) {
+                //Если фильтры есть, то группируем сотрудников по датам
                 if (state.filteredBrigades.isNotEmpty()) {
-                    item {
-                        Box(
-                            modifier = Modifier.fillMaxWidth(),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                modifier = Modifier
-                                    .align(Alignment.Center),
-                                text = "${state.filteredBrigades.first()?.date}",
-                                style = MaterialTheme.typography.labelMedium.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = FontSizeLarge5,
-                                    color = colorResource(id = R.color.black)
-                                ),
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
-                    }
-                    items(state.filteredBrigades) { employee ->
-                        employee?.let {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = Dimens.PaddingMedium4),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Row(modifier = Modifier.weight(0.7f)) {
+                    if (filterData != null) {
+                        state.filteredBrigades.groupBy { it?.date }.forEach { (date, employees) ->
+                            item {
+                                Box(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    contentAlignment = Alignment.Center
+                                ) {
                                     Text(
-                                        text = "${employee.firstName} ${employee.lastName}",
-                                        style = MaterialTheme.typography.bodyMedium.copy(
-                                            fontSize = Dimens.FontSizeLarge3,
-                                            fontWeight = FontWeight.Medium,
+                                        modifier = Modifier
+                                            .align(Alignment.Center),
+                                        text = date.toString(),
+                                        style = MaterialTheme.typography.labelMedium.copy(
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = FontSizeLarge5,
                                             color = colorResource(id = R.color.black)
-                                        )
+                                        ),
                                     )
                                 }
+                                Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
+                            }
+                            items(employees) { employee ->
+                                employee?.let {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(horizontal = Dimens.PaddingMedium4),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Row(modifier = Modifier.weight(0.7f)) {
+                                            Text(
+                                                text = "${employee.firstName} ${employee.lastName}",
+                                                style = MaterialTheme.typography.bodyMedium.copy(
+                                                    fontSize = Dimens.FontSizeLarge3,
+                                                    fontWeight = FontWeight.Medium,
+                                                    color = colorResource(id = R.color.black)
+                                                )
+                                            )
+                                        }
 
-                                Row(modifier = Modifier.weight(0.3f)) {
+                                        Row(modifier = Modifier.weight(0.3f)) {
+                                            Text(
+                                                text = employee.status,
+                                                style = MaterialTheme.typography.bodyMedium.copy(
+                                                    fontSize = Dimens.FontSizeLarge1
+                                                )
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                                    HorizontalDivider()
+                                    Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                                }
+                            }
+                        }
+                    } else {
+                        //Если фильтров нет, то выводим бригаду за сегодня
+                        if (state.currentBrigade.isNotEmpty()) {
+                            item {
+                                Box(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    state.currentBrigade.first()?.date?.let { date ->
+                                        Text(
+                                            modifier = Modifier
+                                                .align(Alignment.Center),
+                                            text = date,
+                                            style = MaterialTheme.typography.labelMedium.copy(
+                                                fontWeight = FontWeight.Bold,
+                                                fontSize = FontSizeLarge5,
+                                                color = colorResource(id = R.color.black)
+                                            ),
+                                        )
+                                    }
+                                }
+                                Spacer(modifier = Modifier.height(Dimens.PaddingSmall6))
+                            }
+                            items(state.currentBrigade) { employee ->
+                                employee?.let {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(horizontal = Dimens.PaddingMedium4),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Row(modifier = Modifier.weight(0.7f)) {
+                                            Text(
+                                                text = "${employee.firstName} ${employee.lastName}",
+                                                style = MaterialTheme.typography.bodyMedium.copy(
+                                                    fontSize = Dimens.FontSizeLarge3,
+                                                    fontWeight = FontWeight.Medium,
+                                                    color = colorResource(id = R.color.black)
+                                                )
+                                            )
+                                        }
+
+                                        Row(modifier = Modifier.weight(0.3f)) {
+                                            Text(
+                                                text = employee.status,
+                                                style = MaterialTheme.typography.bodyMedium.copy(
+                                                    fontSize = Dimens.FontSizeLarge1
+                                                )
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                                    HorizontalDivider()
+                                    Spacer(modifier = Modifier.height(PaddingExtraSmall8))
+                                }
+                            }
+                        } else {
+                            //Если табель еще не отправлен за сегодня
+                            item {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(top = PaddingLarge10),
+                                    contentAlignment = Alignment.Center
+                                ) {
                                     Text(
-                                        text = employee.status,
+                                        text = stringResource(id = R.string.No_statement),
                                         style = MaterialTheme.typography.bodyMedium.copy(
                                             fontSize = Dimens.FontSizeLarge1
                                         )
                                     )
                                 }
                             }
-                            Spacer(modifier = Modifier.height(PaddingExtraSmall8))
-                            HorizontalDivider()
-                            Spacer(modifier = Modifier.height(PaddingExtraSmall8))
                         }
                     }
                 } else {
+                    //Если ничего не найдено по фильтрам
                     item {
                         Box(
-                            modifier = Modifier.fillMaxSize().padding(top = PaddingLarge10),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(top = PaddingLarge10),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(

@@ -11,6 +11,7 @@
     //StatementScreen
     <string name="Search_by_filters">Поиск по фильтрам</string>
     <string name="Nothing_was_found">Ничего не найдено</string>
+    <string name="No_statement">Табель ещё не отправлен</string>
 
     //StatementFilterScreen
     <string name="ApplyFilters">Применить</string>
